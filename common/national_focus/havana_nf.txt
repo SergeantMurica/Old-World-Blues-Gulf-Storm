@@ -1,0 +1,2253 @@
+focus_tree = {
+	id = nf_havana
+	country = {
+		factor = 0
+		modifier = {
+			add = 100
+			tag = HRA
+		}
+	}
+	default = no
+	
+#Introduction Focus
+	focus = {
+		id = hra_great_revolt
+		icon = GFX_focus_focus_fra_revolution_utmost
+		cost = 1
+		x = 22
+		y = 0
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_great_revolt entered"
+			}
+			country_event = { id = nf_havana.1 }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_great_revolt exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_coming_storm
+		icon = GFX_focus_eng_organise_the_blackshirts
+		cost = 1
+		prerequisite = {
+			focus = hra_great_revolt
+		}
+		x = 0
+		y = 1
+		relative_position_id = hra_great_revolt
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_coming_storm entered"
+			}
+			country_event = { id = nf_havana.2 }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_coming_storm exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_edge_of_collapse
+		icon = GFX_goal_generic_attack_allies
+		cost = 1
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_coming_storm
+		}
+		relative_position_id = hra_coming_storm
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_edge_of_collapse entered"
+			}
+			country_event = { id = nf_havana.3 }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_edge_of_collapse exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_dear_leader
+		icon = GFX_focus_generic_monarchy_1
+		cost = 1
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_edge_of_collapse
+		}
+		relative_position_id = hra_edge_of_collapse
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_dear_leader entered"
+			}
+			country_event = { id = nf_havana.4 }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_dear_leader exited"
+			}
+		}
+	}
+#Reconstruction Projects
+	focus = {
+		id = hra_reconstruction_funding
+		icon = GFX_goal_generic_construction2
+		cost = 4.3
+		ai_will_do = { base = 10 }
+		available = {
+            set_temp_variable = {
+                caps_diff = 200
+            }
+            caps_cost_trigger = yes
+        }
+		relative_position_id = hra_dear_leader
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = hra_dear_leader
+		}
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_reconstruction_funding entered"
+			}
+			add_tech_bonus = { bonus = 0.5 uses = 2 category = construction_category }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_reconstruction_funding exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_restore_civ_fac
+		icon = GFX_goal_generic_consumer_goods
+		cost = 5.8
+		ai_will_do = { base = 10 }
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = hra_reconstruction_funding
+			}
+		relative_position_id = hra_reconstruction_funding
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_restore_civ_fac entered"
+			}
+			867 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_restore_civ_fac exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_economic_expansion
+		icon = GFX_goal_generic_construct_civ_factory
+		cost = 8.6
+		ai_will_do = { base = 20 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_restore_civ_fac
+		}
+		relative_position_id = hra_restore_civ_fac
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_economic_expansion entered"
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = industrial_complex
+										size > 0
+										include_locked = yes
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}	
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_economic_expansion exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_planned_roads
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 5.8
+		ai_will_do = { base = 10 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_reconstruction_funding
+		}
+		relative_position_id = hra_reconstruction_funding
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_planned_roads entered"
+			}
+			867 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_planned_roads exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_new_mil_fac
+		icon = GFX_goal_generic_common_firearms_focus
+		cost = 5.8
+		ai_will_do = { base = 10 }
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = hra_reconstruction_funding
+		}
+		relative_position_id = hra_reconstruction_funding
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_planned_roads entered"
+			}
+			867 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_planned_roads exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_military_expansion
+		icon = GFX_goal_generic_construct_mil_factory
+		cost = 8.6
+		ai_will_do = { base = 20 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_new_mil_fac
+		}
+		relative_position_id = hra_new_mil_fac
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_military_expansion entered"
+			}
+		random_owned_controlled_state = {
+			limit = {
+				free_building_slots = {
+					building = arms_factory
+					size > 0
+					include_locked = yes
+				}
+				OR = {
+					is_in_home_area = yes
+					NOT = {
+						owner = {
+							any_owned_state = {
+								free_building_slots = {
+									building = arms_factory
+									size > 0
+									include_locked = yes
+								}
+								is_in_home_area = yes
+							}
+						}
+					}
+				}
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_military_expansion exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_reclamation_bureau
+		icon = GFX_focus_spa_the_spanish_miracle
+		cost = 8.6
+		ai_will_do = { base = 0 }
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = hra_new_mil_fac
+			focus = hra_planned_roads
+			focus = hra_restore_civ_fac
+		}
+		relative_position_id = hra_reconstruction_funding
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_planned_roads entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_planned_roads exited"
+			}
+		}
+	}
+#People's Rule Branch
+	focus = {
+		id = hra_no_confidence
+		icon = GFX_focus_spr_torchbearers_of_tomorrow
+		cost = 3.6
+		ai_will_do = { base = 100 }
+		available = {
+			people > 0.5
+			}
+		relative_position_id = hra_dear_leader
+		x = -6
+		y = 1
+		prerequisite = {
+			focus = hra_dear_leader
+		}
+		mutually_exclusive = {
+			focus = hra_long_reign
+			}
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_no_confidence entered"
+			}
+			remove_ideas = hra_political_unrest
+			country_event = { id = nf_havana.5 }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_no_confidence exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_loyalist_trials
+		icon = GFX_goal_generic_neutrality_focus
+		cost = 5.8
+		ai_will_do = { base = 100 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_no_confidence
+		}
+		relative_position_id = hra_no_confidence
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_peoples_voice_restored entered"
+			}
+			country_event = { id = nf_havana.7 }
+			set_party_name = { 
+				ideology = ruler
+				long_name = HRA_ruler_party_assembly
+				name = HRA_ruler_party_assembly
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_peoples_voice_restored exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_havana_constitution
+		icon = GFX_focus_generic_treaty
+		cost = 5.8
+		ai_will_do = { base = 50 }
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = hra_loyalist_trials
+		}
+		relative_position_id = hra_no_confidence
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_havana_constitution entered"
+			}
+			add_political_power = 25
+			set_party_name = { 
+				ideology = people
+				long_name = HRA_people_party_assembly
+				name = HRA_people_party_assembly
+			}
+			add_popularity = {
+				ideology = people
+				popularity = 0.05
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_havana_constitution exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_true_representation
+		icon = GFX_goal_generic_improve_relations
+		cost = 8.6
+		ai_will_do = { base = 50 }
+		x = 0
+		y = 3
+		prerequisite = {
+			focus = hra_havana_constitution
+		}
+		relative_position_id = hra_no_confidence
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_havana_constitution entered"
+			}
+			set_cosmetic_tag = HRA_people
+			add_popularity = {
+				ideology = people
+				popularity = 0.1
+			}
+			add_political_power = 75
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_havana_constitution exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_prepare_expansion
+		icon = GFX_focus_generic_diplomatic_treaty
+		cost = 4.3
+		ai_will_do = { base = 100 }
+		available = {
+			people > 0.65
+			}
+		x = 2
+		y = 2
+		prerequisite = {
+			focus = hra_loyalist_trials
+		}
+		relative_position_id = hra_no_confidence
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_prepare_expansion entered"
+			}
+		add_timed_idea = {
+			idea = hra_preparing_for_war
+			days = 40
+		}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_prepare_expansion exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_breaking_stagnation
+		icon = GFX_focus_research
+		cost = 5.8
+		ai_will_do = { base = 50 }
+		x = -2
+		y = 2
+		prerequisite = {
+			focus = hra_loyalist_trials
+		}
+		relative_position_id = hra_no_confidence
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_breaking_stagnation entered"
+			}
+			add_popularity = {
+				ideology = people
+				popularity = 0.05
+			}
+			remove_ideas = hra_scientific_stagnation
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_breaking_stagnation exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_havana_university
+		icon = GFX_goal_generic_scientific_exchange
+		cost = 8.6
+		ai_will_do = { base = 75 }
+		x = -2
+		y = 3
+		prerequisite = {
+			focus = hra_breaking_stagnation
+		}
+		relative_position_id = hra_no_confidence
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_havana_university entered"
+			}
+			add_popularity = {
+				ideology = people
+				popularity = 0.05
+			}
+			add_research_slot = 1
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_havana_university exited"
+			}
+		}
+	}	
+#Dictator's Rule
+	focus = {
+		id = hra_long_reign
+		icon = GFX_focus_rom_royal_dictatorship
+		cost = 3.6
+		ai_will_do = { base = 100 }
+		available = {
+			ruler > 0.5
+			}
+		x = 6
+		y = 1
+		prerequisite = {
+			focus = hra_dear_leader
+		}
+		mutually_exclusive = {
+			focus = hra_no_confidence
+			}
+		relative_position_id = hra_dear_leader
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_long_reign entered"
+			}
+			remove_ideas = hra_political_unrest
+			country_event = { id = nf_havana.6 }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_long_reign exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_consolidate_power
+		icon = GFX_goal_generic_political_pressure
+		cost = 4.3
+		ai_will_do = { base = 100 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_long_reign
+		}
+		relative_position_id = hra_long_reign
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_consolidate_power entered"
+			}
+			add_political_power = 75
+			set_party_name = { 
+				ideology = people
+				long_name = HRA_people_party_romero
+				name = HRA_people_party_romero
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_consolidate_power exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_proclaim_imperium
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		cost = 5.8
+		ai_will_do = { base = 75 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_consolidate_power
+		}
+		relative_position_id = hra_consolidate_power
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_proclaim_imperium entered"
+			}
+			add_popularity = {
+				ideology = ruler
+				popularity = 0.10
+			}
+			set_cosmetic_tag = HRA_ruler
+			set_party_name = { 
+				ideology = ruler
+				long_name = HRA_ruler_party_romero
+				name = HRA_ruler_party_romero
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_proclaim_imperium exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_sub_chair_tribute
+		icon = GFX_focus_eng_concessions_to_the_trade_unions
+		cost = 1
+		ai_will_do = { base = 0 }
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = hra_proclaim_imperium
+		}
+		relative_position_id = hra_consolidate_power
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_sub_chair_tribute entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_sub_chair_tribute exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_control_edu
+		icon = GFX_goal_BOS_generic_research
+		cost = 5.8
+		ai_will_do = { base = 50 }
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = hra_consolidate_power
+		}
+		relative_position_id = hra_consolidate_power
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_control_edu entered"
+			}
+			add_popularity = {
+				ideology = ruler
+				popularity = 0.05
+			}
+			swap_ideas = {
+				remove_idea = hra_scientific_stagnation
+				add_idea = hra_state_edu
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_control_edu exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_imperial_academy
+		icon = GFX_goal_tfv_generic_tech_sharing
+		cost = 8.6
+		ai_will_do = { base = 75 }
+		x = 2
+		y = 2
+		prerequisite = {
+			focus = hra_control_edu
+		}
+		relative_position_id = hra_consolidate_power
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_imperial_academy entered"
+			}
+			add_popularity = {
+				ideology = ruler
+				popularity = 0.05
+			}
+			swap_ideas = {
+				remove_idea = hra_state_edu
+				add_idea = hra_imperial_academy_idea
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_imperial_academy exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_expand_authority
+		icon = GFX_focus_generic_strike_at_democracy1
+		cost = 4.3
+		ai_will_do = { base = 100 }
+		available = {
+			ruler > 0.65
+			}
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = hra_consolidate_power
+		}
+		relative_position_id = hra_consolidate_power
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_long_reign entered"
+			}
+			add_timed_idea = {
+				idea = hra_preparing_for_war
+				days = 40
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_long_reign exited"
+			}
+		}
+	}
+#Expansion Line
+	focus = {
+		id = hra_memorial_delegation
+		icon = GFX_goal_tripartite_pact
+		cost = 5.8
+		ai_will_do = { base = 100 }
+		available = { 
+			if = {
+				limit = { is_ai = yes }
+				hidden_trigger = {
+					NOT = { has_country_flag = restrict_ai_wargoal_focuses }
+				}
+			}
+		}
+		x = 2
+		y = 4
+		prerequisite = {
+			focus = hra_prepare_expansion
+		}
+		relative_position_id = hra_no_confidence
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_memorial_delegation entered"
+			}
+			MBC = {country_event = { id = nf_havana.8 }}
+			set_country_flag = restrict_ai_wargoal_focuses 
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_memorial_delegation exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_memorial_representation
+		icon = GFX_focus_generic_self_management
+		cost = 8.6
+		ai_will_do = { base = 100 }
+		available = {
+			OR = {
+				872 = { is_owned_and_controlled_by = ROOT }
+				AND = {  
+					MBC = { is_puppet_of = HRA }
+					872 = { is_owned_and_controlled_by = MBC }
+				}
+			}			
+		}
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_memorial_delegation
+		}
+		relative_position_id = hra_memorial_delegation
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_memorial_delegation entered"
+			}
+			if = { 
+				limit = { MBC = { is_puppet_of = HRA }}
+				annex_country = {
+					target = MBC
+					transfer_troops = no
+				}
+			}
+			clr_country_flag = restrict_ai_wargoal_focuses 
+			add_state_core = 872
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_memorial_delegation exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_invest_in_memorial
+		icon = GFX_goal_generic_large_scale_normal_industry_focus
+		cost = 8.6
+		ai_will_do = { base = 50 }
+		available = { 
+			has_war = no
+			OR = { 
+				872 = {is_controlled_by = HRA}
+				MBC = { is_puppet_of = HRA}
+			}
+		}
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = hra_memorial_delegation
+		}
+		relative_position_id = hra_memorial_delegation
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_memorial_delegation entered"
+			}
+			872 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_memorial_delegation exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_river_walker_outreach
+		icon = GFX_goal_tripartite_pact
+		cost = 5.8
+		ai_will_do = { base = 100 }
+		available = { 
+			if = {
+				limit = { is_ai = yes }
+				hidden_trigger = {
+					NOT = { has_country_flag = restrict_ai_wargoal_focuses }
+				}
+			}
+		}
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = hra_memorial_delegation
+		}
+		mutually_exclusive = { 
+			focus = hra_educate_tribals
+		}
+		relative_position_id = hra_memorial_delegation
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_river_walker_outreach entered"
+			}
+			RWT = {country_event = { id = nf_havana.11 }}
+			set_country_flag = restrict_ai_wargoal_focuses 
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_river_walker_outreach exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_river_walker_representation
+		icon = GFX_focus_generic_self_management
+		cost = 8.6
+		ai_will_do = { base = 100 }
+		available = {
+			OR = {
+				RWT = { is_puppet_of = HRA }
+				AND = {
+					869 = { is_owned_and_controlled_by = ROOT }
+					870 = { is_owned_and_controlled_by = ROOT }
+				}
+			}
+		}			
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = hra_river_walker_outreach
+		}
+		relative_position_id = hra_river_walker_outreach
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_river_walker_outreach entered"
+			}
+			if = { 
+				limit = { RWT = { is_puppet_of = HRA }}
+				annex_country = {
+					target = RWT
+					transfer_troops = no
+				}
+			}
+			add_state_core = 869
+			add_state_core = 870
+			clr_country_flag = restrict_ai_wargoal_focuses 
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_river_walker_outreach exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_subjugate_the_bay
+		icon = GFX_goal_tfv_saf_anti_colonialist_crusade
+		cost = 4.3
+		ai_will_do = { base = 100 }
+		available = { 
+			if = {
+				limit = { is_ai = yes }
+				hidden_trigger = {
+					NOT = { has_country_flag = restrict_ai_wargoal_focuses }
+				}
+			}
+		}
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = hra_expand_authority
+		}
+		relative_position_id = hra_expand_authority
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_subjugate_the_bay entered"
+			}
+		create_wargoal = {
+			target = MBC
+			type = annex_everything
+		}
+		set_country_flag = restrict_ai_wargoal_focuses
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_subjugate_the_bay exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_integrate_memorial_bay
+		icon = GFX_focus_eng_move_to_secure_the_dominions
+		cost = 5.8
+		ai_will_do = { base = 100 }
+		available = {
+			OR = {
+				872 = { is_owned_and_controlled_by = ROOT }
+				AND = {  
+					MBC = { is_puppet_of = HRA }
+					872 = { is_owned_and_controlled_by = MBC }
+				}
+			}			
+		}
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_subjugate_the_bay
+		}
+		relative_position_id = hra_subjugate_the_bay
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_integrate_memorial_bay entered"
+			}
+			if = { 
+				limit = { MBC = { is_puppet_of = HRA }}
+				annex_country = {
+					target = MBC
+					transfer_troops = no
+				}
+			}
+			add_state_core = 872
+			clr_country_flag = restrict_ai_wargoal_focuses
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_integrate_memorial_bayexited"
+			}
+		}
+	}
+	focus = {
+		id = hra_northern_cuban_road
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 5.8
+		ai_will_do = { base = 50 }
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = hra_subjugate_the_bay
+		}
+		relative_position_id = hra_subjugate_the_bay
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_subjugate_the_bay entered"
+			}
+			if = { 
+				limit = { 869 = { is_controlled_by =  HRA  } }
+				869 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			if = { 
+				limit = { 870 = { is_controlled_by =  HRA  } }
+				870 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			if = { 
+				limit = { 871 = { is_controlled_by =  HRA  } }
+				871 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			if = { 
+				limit = { 872 = { is_controlled_by =  HRA  } }
+				872 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			if = { 
+				limit = { 873 = { is_controlled_by =  HRA  } }
+				873 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			if = { 
+				limit = { 874 = { is_controlled_by =  HRA  } }
+				874 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			custom_effect_tooltip = hra_northern_cuban_road_tt
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_subjugate_the_bay exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_educate_tribals
+		icon = GFX_goal_tfv_saf_anti_colonialist_crusade
+		cost = 4.3
+		ai_will_do = { base = 100 }
+		available = { 
+			if = {
+				limit = { is_ai = yes }
+				hidden_trigger = {
+					NOT = { has_country_flag = restrict_ai_wargoal_focuses }
+				}
+			}
+		}
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = hra_subjugate_the_bay
+		}
+		mutually_exclusive = { 
+			focus = hra_river_walker_outreach 
+		}
+		relative_position_id = hra_subjugate_the_bay
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_educate_tribals entered"
+			}
+		create_wargoal = {
+			target = RWT
+			type = annex_everything
+		}
+		set_country_flag = restrict_ai_wargoal_focuses
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_educate_tribals exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_the_walkers_tribute
+		icon = GFX_focus_eng_move_to_secure_the_dominions
+		cost = 5.8
+		ai_will_do = { base = 100 }
+		available = {
+			869 = { is_owned_and_controlled_by = ROOT }
+			870 = { is_owned_and_controlled_by = ROOT }
+		}
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = hra_educate_tribals
+		}
+		relative_position_id = hra_educate_tribals
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_the_walkers_tribute entered"
+			}
+			if = { 
+				limit = { RWT = { is_puppet_of = HRA }}
+				annex_country = {
+					target = RWT
+					transfer_troops = no
+				}
+			}
+			add_state_core = 869
+			add_state_core = 870
+			clr_country_flag = restrict_ai_wargoal_focuses
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_the_walkers_tribute exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_eyes_to_south
+		icon = GFX_goal_generic_military_sphere
+		cost = 1
+		ai_will_do = { base = 0 }
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = hra_educate_tribals
+			focus = hra_river_walker_outreach
+		}
+		relative_position_id = hra_educate_tribals
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_eyes_to_south entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_eyes_to_south exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_dealing_with_komarov
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		ai_will_do = { base = 0 }
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = hra_eyes_to_south
+		}
+		relative_position_id = hra_eyes_to_south
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_dealing_with_komarov entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_dealing_with_komarov exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_secrets_of_an_empire
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		ai_will_do = { base = 0 }
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = hra_dealing_with_komarov
+		}
+		relative_position_id = hra_dealing_with_komarov
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_dealing_with_komarov entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_dealing_with_komarov exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_the_last_soviet
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		ai_will_do = { base = 0 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_dealing_with_komarov
+		}
+		relative_position_id = hra_dealing_with_komarov
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_dealing_with_komarov entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_dealing_with_komarov exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_end_the_pirates
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		ai_will_do = { base = 0 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_eyes_to_south
+		}
+		relative_position_id = hra_eyes_to_south
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_end_the_pirates entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_end_the_pirates exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_seizing_island_of_death
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		ai_will_do = { base = 0 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_end_the_pirates
+		}
+		relative_position_id = hra_end_the_pirates
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_seizing_island_of_death entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_seizing_island_of_death exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_atomic_cultists
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		ai_will_do = { base = 0 }
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = hra_eyes_to_south
+		}
+		relative_position_id = hra_eyes_to_south
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_atomic_cultistsentered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_atomic_cultists exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_secrets_of_radiation
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		ai_will_do = { base = 0 }
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = hra_atomic_cultists
+		}
+		relative_position_id = hra_atomic_cultists
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_secrets_of_radiation entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_secrets_of_radiation exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_deradify
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		ai_will_do = { base = 0 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_atomic_cultists
+		}
+		relative_position_id = hra_atomic_cultists
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_secrets_of_radiation entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_secrets_of_radiation exited"
+			}
+		}
+	}
+#Air Navy
+	focus = {
+		id = hra_sea_and_air
+		icon = GFX_goal_generic_air_doctrine
+		cost = 4.3
+		ai_will_do = { base = 10 }
+		x = -19
+		y = 1
+		prerequisite = {
+			focus = hra_dear_leader
+		}
+		relative_position_id = hra_dear_leader
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_no_confidence entered"
+			}
+			navy_experience = 50
+			air_experience = 50
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_no_confidence exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_the_old_airport
+		icon = GFX_goal_generic_airbases_focus
+		cost = 5.8
+		ai_will_do = { base = 20 }
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = hra_sea_and_air
+		}
+		relative_position_id = hra_sea_and_air
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_no_confidence entered"
+			}
+			867 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_no_confidence exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_updating_airforce
+		icon = GFX_goal_generic_air_fighter
+		cost = 8.6
+		ai_will_do = { base = 20 }
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = hra_the_old_airport
+		}
+		relative_position_id = hra_the_old_airport
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_updating_airforce entered"
+			}
+			add_tech_bonus = {
+				name = air_bonus
+				bonus = 0.5
+				uses = 1
+				category = air_tech_category
+			}
+			add_tech_bonus = {
+				name = air_bonus
+				bonus = 0.5
+				uses = 1
+				category = air_equipment_tech_category
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_updating_airforce exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_streamlining_air_production
+		icon = GFX_goal_generic_air_production
+		cost = 8.6
+		ai_will_do = { base = 20 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_updating_airforce
+		}
+		relative_position_id = hra_updating_airforce
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_streamlining_air_production entered"
+			}
+			add_ideas = hra_sreamlined_air
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_streamlining_air_production exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_sky_doctrine
+		icon = GFX_focus_generic_air_defense
+		cost = 8.6
+		ai_will_do = { base = 20 }
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = hra_the_old_airport
+		}
+		relative_position_id = hra_the_old_airport
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_sky_doctrine entered"
+			}
+			add_tech_bonus = { bonus = 0.5 uses = 2 category = cat_air_doctrine }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_sky_doctrine exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_new_air_academy
+		icon = GFX_goal_generic_air_doctrines_focus
+		cost = 8.6
+		ai_will_do = { base = 20 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_sky_doctrine
+		}
+		relative_position_id = hra_sky_doctrine
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_new_air_academy entered"
+			}
+			add_ideas = hra_air_academy
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_new_air_academy exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_modern_airforce
+		icon = GFX_goal_generic_air_doctrine
+		cost = 8.6
+		ai_will_do = { base = 20 }
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = hra_new_air_academy
+		}
+		prerequisite = {
+			focus = hra_streamlining_air_production
+		}
+		relative_position_id = hra_new_air_academy
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_modern_airforce entered"
+			}
+			air_experience = 100
+			add_ace = {
+				name = "Alejándro"
+				surname = "Maceo"
+				callsign = "Blackhawk"
+				type = fighter_genius
+				is_female = no
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_modern_airforce exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_restoring_dockyards
+		icon = GFX_goal_NCR_Rebuild_the_13
+		cost = 5.8
+		ai_will_do = { base = 30 }
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = hra_sea_and_air
+		}
+		relative_position_id = hra_sea_and_air
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_no_confidence entered"
+			}
+			867 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_no_confidence exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_updating_naval_tech
+		icon = GFX_goal_BOS_steel_cage
+		cost = 8.6
+		ai_will_do = { base = 30 }
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = hra_restoring_dockyards
+		}
+		relative_position_id = hra_restoring_dockyards
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_updating_naval_tech entered"
+			}
+			add_tech_bonus = {
+				name = naval_bonus
+				bonus = 0.5
+				uses = 1
+				category = naval_tech_category
+			}
+			add_tech_bonus = {
+				name = naval_bonus
+				bonus = 0.5
+				uses = 1
+				category = naval_equipment
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_updating_naval_tech exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_streamlining_naval_production
+		icon = GFX_goal_NCR_Riverbank
+		cost = 8.6
+		ai_will_do = { base = 30 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_updating_naval_tech
+		}
+		relative_position_id = hra_updating_naval_tech
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_no_confidence entered"
+			}
+			add_ideas = hra_sreamlined_navy
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_no_confidence exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_sea_battle_theory
+		icon = GFX_goal_generic_navy_cruiser
+		cost = 8.6
+		ai_will_do = { base = 30 }
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = hra_restoring_dockyards
+		}
+		relative_position_id = hra_restoring_dockyards
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_no_confidence entered"
+			}
+			add_tech_bonus = { bonus = 0.5 uses = 2 category = cat_naval_doctrine }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_no_confidence exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_new_naval_academy
+		icon = GFX_goal_generic_amphibious_assault
+		cost = 8.6
+		ai_will_do = { base = 30 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_sea_battle_theory
+		}
+		relative_position_id = hra_sea_battle_theory
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_no_confidence entered"
+			}
+			add_ideas = hra_naval_academy
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_no_confidence exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_modern_navy
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		cost = 8.6
+		ai_will_do = { base = 30 }
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = hra_new_naval_academy
+		}
+		prerequisite = {
+			focus = hra_streamlining_naval_production
+		}
+		relative_position_id = hra_new_naval_academy
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_modern_navy entered"
+			}
+			navy_experience = 100
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_modern_navy exited"
+			}
+		}
+	}
+#Army Line
+	focus = {
+		id = hra_armed_forces
+		icon = GFX_goal_rhineland
+		cost = 4.3
+		ai_will_do = { base = 30 }
+		x = -13
+		y = 1
+		prerequisite = {
+			focus = hra_dear_leader
+		}
+		relative_position_id = hra_dear_leader
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_no_confidence entered"
+			}
+			army_experience = 100
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_no_confidence exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_professional_army
+		icon = GFX_focus_generic_little_entente
+		cost = 8.6
+		ai_will_do = { base = 40 }
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = hra_armed_forces
+		}
+		mutually_exclusive = {
+			focus = hra_mass_mobilization
+			}
+		relative_position_id = hra_armed_forces
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_professional_army entered"
+			}
+			add_ideas = hra_professional_army_idea1
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_professional_army exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_havanas_elites
+		icon = GFX_goal_generic_special_forces
+		cost = 8.6
+		ai_will_do = { base = 40 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_professional_army
+		}
+		relative_position_id = hra_professional_army
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_havanas_elites entered"
+			}
+			swap_ideas = {
+				remove_idea = hra_professional_army_idea1
+				add_idea = hra_professional_army_idea2
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_havanas_elites exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_national_army
+		icon = GFX_focus_generic_military_mission
+		cost = 8.6
+		ai_will_do = { base = 50 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_havanas_elites
+		}
+		relative_position_id = hra_havanas_elites
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_spirit_of_revolt entered"
+			}
+			swap_ideas = {
+				remove_idea = hra_professional_army_idea2
+				add_idea = hra_professional_army_idea3
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_spirit_of_revolt exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_mass_mobilization
+		icon = GFX_focus_prc_infiltration
+		cost = 8.6
+		ai_will_do = { base = 40 }
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = hra_armed_forces
+		}
+		mutually_exclusive = {
+			focus = hra_professional_army
+			}
+		relative_position_id = hra_armed_forces
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_mass_mobilization entered"
+			}
+			add_ideas = hra_mass_mobilization_idea1
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_mass_mobilization exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_citizen_soldiers
+		icon = GFX_focus_generic_support_the_left_right
+		cost = 8.6
+		ai_will_do = { base = 40 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_mass_mobilization
+		}
+		relative_position_id = hra_mass_mobilization
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_citizen_soldiers entered"
+			}
+			swap_ideas = {
+				remove_idea = hra_mass_mobilization_idea1
+				add_idea = hra_mass_mobilization_idea2
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_citizen_soldiers exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_spirit_of_revolt
+		icon = GFX_focus_spr_masters_of_our_own_fate
+		cost = 8.6
+		ai_will_do = { base = 50 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_citizen_soldiers
+		}
+		relative_position_id = hra_citizen_soldiers
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_spirit_of_revolt entered"
+			}
+			swap_ideas = {
+				remove_idea = hra_mass_mobilization_idea2
+				add_idea = hra_mass_mobilization_idea3
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_spirit_of_revolt exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_ideas_on_war
+		icon = GFX_goal_generic_position_armies
+		cost = 8.6
+		ai_will_do = { base = 40 }
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = hra_armed_forces
+		}
+		relative_position_id = hra_armed_forces
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_professional_army entered"
+			}
+			add_tech_bonus = { bonus = 0.5 uses = 2 category = cat_land_doctrine }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_professional_army exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_havana_war_college
+		icon = GFX_focus_generic_military_academy
+		cost = 8.6
+		ai_will_do = { base = 40 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_ideas_on_war
+		}
+		relative_position_id = hra_ideas_on_war
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_professional_army entered"
+			}
+			add_ideas = hra_war_college_idea 
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_professional_army exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_military_reasearch_grants
+		icon = GFX_focus_generic_treaty
+		cost = 8.6
+		ai_will_do = { base = 40 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_havana_war_college
+		}
+		relative_position_id = hra_havana_war_college
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_military_reasearch_grants entered"
+			}
+			add_ideas = hra_military_research_grants_idea 
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_military_reasearch_grants exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_modern_army
+		icon = GFX_focus_hol_united_netherlands
+		cost = 8.6
+		ai_will_do = { base = 40 }
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = hra_military_reasearch_grants
+		}
+		prerequisite = {
+			focus = hra_national_army
+			focus = hra_spirit_of_revolt	
+		}
+		relative_position_id = hra_spirit_of_revolt
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_military_reasearch_grants entered"
+			}
+			army_experience = 100
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_military_reasearch_grants exited"
+			}
+		}
+	}
+#Eagle Rising Branch
+	focus = {
+		id = hra_eagle_stirs
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		ai_will_do = { base = 0 }
+		available = { TCR = { has_completed_focus = tcr_occupy_shattered_lands } }
+		x = 12
+		y = 1
+		prerequisite = {
+			focus = hra_dear_leader
+		}
+		relative_position_id = hra_dear_leader
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_eagle_stirs entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_eagle_stirs exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_militaryprep
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		ai_will_do = { base = 0 }
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = hra_eagle_stirs
+		}
+		relative_position_id = hra_eagle_stirs
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_militaryprep entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_militaryprep exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_influence_citystates
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		ai_will_do = { base = 0 }
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = hra_eagle_stirs
+		}
+		relative_position_id = hra_eagle_stirs
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_influence_citystates entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_influence_citystates exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_growingmenace
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		ai_will_do = { base = 0 }
+		available = { TCR = { num_of_controlled_states > 6 } }
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = hra_eagle_stirs
+		}
+		relative_position_id = hra_eagle_stirs
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_growingmenace entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_growingmenace exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_southern_volunteers
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		ai_will_do = { base = 0 }
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = hra_growingmenace
+		}
+		relative_position_id = hra_growingmenace
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_southern_volunteers entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_southern_volunteers exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_propaganda_mobilization
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		ai_will_do = { base = 0 }
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = hra_growingmenace
+		}
+		relative_position_id = hra_growingmenace
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_propaganda_mobilization entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_propaganda_mobilization exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_eaglesoars
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		ai_will_do = { base = 0 }
+		available = { 
+			OR = { 
+				AND = { TCR = { has_war_with = GCP}
+						GCP = {surrender_progress > 0.33}
+				}
+				TCR = { num_of_controlled_states > 9 }
+			}
+		}
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = hra_growingmenace
+		}
+		relative_position_id = hra_growingmenace
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_eaglesoars entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_eaglesoars exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_compliance_demands
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		ai_will_do = { base = 0 }
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = hra_eaglesoars
+		}
+		relative_position_id = hra_eaglesoars
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_compliance_demands entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_compliance_demands exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_funding_resistance
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		ai_will_do = { base = 0 }
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = hra_eaglesoars
+		}
+		relative_position_id = hra_eaglesoars
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_funding_resistance entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_funding_resistance exited"
+			}
+		}
+	}
+	focus = {
+		id = hra_pluckingwings
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		ai_will_do = { base = 0 }
+		available = { 
+			OR = { 
+				is_neighbor_of = TCR
+				any_allied_country = { is_neighbor_of = TCR }
+			}
+		}
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = hra_eaglesoars
+		}
+		relative_position_id = hra_eaglesoars
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_pluckingwings entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] hra_pluckingwings exited"
+			}
+		}
+	}
+}

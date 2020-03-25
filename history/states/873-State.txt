@@ -1,0 +1,33 @@
+state = {
+	id = 873
+	name="STATE_873"
+	manpower = 4000
+	state_category = rural
+
+	resources={
+		metal = 4
+	}
+
+	history={
+		owner = KMG
+		add_core_of = KMG
+		victory_points = {
+			10631 10
+		}
+		
+		buildings = {
+			infrastructure = 4
+			industrial_complex = 2
+			arms_factory = 2
+			dockyard = 1
+	
+			
+		}
+
+	}
+
+	provinces = {
+		10625 10621 10631 10616 10633
+	}
+	
+}

@@ -1,0 +1,34 @@
+state = {
+	id = 889
+	name="STATE_889"
+	manpower = 13500
+	state_category = city
+
+	resources={
+		metal = 4
+	}
+
+	history={
+		owner = IAG
+		add_core_of = IAG
+		victory_points = {
+			10515 15
+		}
+		buildings = {
+			infrastructure = 5
+			industrial_complex = 3
+			arms_factory = 2
+			10515 = {
+				naval_base = 1
+			}	
+	
+			
+		}
+
+	}
+
+	provinces = {
+		10515 10523 10537 10532 10524 10516
+	}
+	
+}

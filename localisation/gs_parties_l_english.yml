@@ -1,0 +1,20 @@
+﻿l_english:
+  
+  # Task Force Cuba
+  TCR_people_party:0 "Civilian Assembly"
+  TCR_elites_party:0 "High Command"
+  TCR_ruler_party:0 "Imperialists"
+  TCR_intellectuals_party:0 "Black Division"
+  TCR_elites_party_division:0 "Old Guard"
+  TCR_intellectuals_party_division:0 "Division Command"
+  
+  # Havana Republican Authority
+  HRA_people_party:0 "Gente Unidas"
+  HRA_elites_party:0 "Fénix Corp"
+  HRA_ruler_party:0 "Romero's Loyalists"
+  HRA_intellectuals_party:0 "Adaptar Humanum"
+  HRA_people_party_assembly:0 "Havana Assembly"
+  HRA_ruler_party_assembly:0 "Partido Imperialista"
+  HRA_ruler_party_romero:0 "Imperial Governance"
+  HRA_people_party_romero:0 "La Resistencia"
+  

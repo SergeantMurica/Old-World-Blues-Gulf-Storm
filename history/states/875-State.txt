@@ -1,0 +1,32 @@
+state = {
+	id = 875
+	name="STATE_875"
+	manpower = 4000
+	state_category = town
+
+	resources={
+		metal = 4
+	}
+
+	history={
+		owner = TES
+		add_core_of = TES
+		victory_points = {
+			10619 20
+		}
+		buildings = {
+			infrastructure = 4
+			industrial_complex = 2
+			arms_factory = 2
+			dockyard = 1
+	
+			
+		}
+
+	}
+
+	provinces = {
+		10642 728 10619 10648 10645 10644 10614
+	}
+	
+}

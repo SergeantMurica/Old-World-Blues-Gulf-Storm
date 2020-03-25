@@ -1,0 +1,32 @@
+state = {
+	id = 888
+	name="STATE_888"
+	manpower = 20500
+	state_category = large_city
+
+	resources={
+		metal = 4
+	}
+
+	history={
+		owner = IAG
+		add_core_of = IAG
+		victory_points = {
+			713 20
+		}
+
+		buildings = {
+			infrastructure = 4
+			industrial_complex = 3
+			arms_factory = 2
+	
+			
+		}
+
+	}
+
+	provinces = {
+		10508 10518 10509 713 10526 10536 10512 10540
+	}
+	
+}

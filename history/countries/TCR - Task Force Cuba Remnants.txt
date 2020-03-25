@@ -1,0 +1,108 @@
+﻿capital = 868
+oob = "TCR_2275"
+
+set_technology = {
+	tribal_civilization = 1
+	settled_civilization = 1
+	standard_weaponry_tech = 1
+	melee_weaponry_tech_1 = 1
+	ballistic_weaponry_tech_1 = 1
+	warrior_equipment = 1
+	ballistic_weaponry_tech_2 = 1
+	support_weaponry = 1
+	spec_ops_equipment_tech_1 = 1
+	spec_ops_equipment_tech_2 = 1
+	hardening_armour_tech = 1
+	simple_servo_tech = 1
+	stripped_pa_tech = 1
+	scav_pa_tech = 1
+}
+
+if = {
+	limit = {
+		has_dlc = "Man the Guns"
+	}
+	set_technology = {
+		nautics_tech_1 = 1
+		light_navy_hull_tech_1 = 1
+		naval_invasion_tech_1 = 1
+	}
+}
+if = {
+	limit = {
+		NOT = { has_dlc = "Man the Guns" }
+	}
+	set_technology = {
+		nautics_tech_non_mtg_1 = 1
+		light_navy_hull_tech_non_mtg_1 = 1
+		naval_invasion_tech_non_mtg_1 = 1
+	}
+}
+
+set_stability = 0.35
+set_war_support = 0.2
+set_research_slots = 2
+set_politics = {
+	ruling_party = elites
+	elections_allowed = no
+
+}
+
+#Starting Politics
+set_popularities = {
+	people = 0
+	elites = 55
+	intellectuals = 45
+	ruler = 0
+}
+
+#Starting Ideas
+add_ideas = {
+	fracturedcommand
+	entrenched_ideas_1
+	officer_law_veterans
+	training_law_veterans
+	outsider_law_none
+	mutant_law_ghoul
+}
+
+#Starting Rules
+set_rule = { can_declare_war_on_same_ideology = yes}
+set_country_flag = no_generic_theorist
+set_country_flag = coring_button_hidden
+set_country_flag = has_unique_manpower_law
+
+
+create_country_leader = {
+	name = "Colonel Fisher"
+	desc = "EL_SEEYO_DESC"
+	picture = "portrait_el_capitan.dds"
+	expire = "3000.1.1"
+	ideology = militarist_oligarchy
+	traits = {
+		stout_defender
+	}
+}
+create_country_leader = {
+	name = "Black Six"
+#	desc = "Black_Six_DESC"
+	picture = "portrait_black_6_temp.dds"
+	expire = "3000.1.1"
+	ideology = technocracy
+
+}
+create_field_marshal = {
+	name = "Black Six"
+#	desc = "EL_SEEYO_DESC"
+	picture = "portrait_black_6_temp.dds"
+	skill = 2
+	traits = { strong_trait perceptive_trait intelligent_trait
+	}
+	attack_skill = 2
+	defense_skill = 3
+	planning_skill = 2
+	logistics_skill = 1
+}
+
+
+country_event = { id = tcr_politics.1 days = 5 }

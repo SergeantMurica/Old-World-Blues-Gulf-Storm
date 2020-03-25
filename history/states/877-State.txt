@@ -1,0 +1,32 @@
+state = {
+	id = 877
+	name="STATE_877"
+	manpower = 4000
+	state_category = rural
+
+	resources={
+		metal = 4
+	}
+
+	history={
+		owner = CTS
+		add_core_of = CTS
+		victory_points = {
+			10609 20
+		}
+		buildings = {
+			infrastructure = 4
+			industrial_complex = 2
+			arms_factory = 2
+			dockyard = 1
+	
+			
+		}
+
+	}
+
+	provinces = {
+		10592 10598 10609 719 10590 10611
+	}
+	
+}

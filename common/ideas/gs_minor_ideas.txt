@@ -1,0 +1,136 @@
+ideas = {
+	country = {
+	
+	gs_old_world_collaborators = {
+		picture = generic_disjointed_gov
+		allowed = {
+		}
+		removal_cost = -1
+		modifier = {
+		production_factory_max_efficiency_factor = 0.15
+		MONTHLY_POPULATION = 0.2
+		}
+	}
+	 
+	gs_ancient_insurgents = {
+		picture = generic_disjointed_gov
+		allowed = {
+		} 
+		removal_cost = -1
+		modifier = {
+		experience_gain_army_factor  = 0.05
+		partisan_effect = 0.05
+		surrender_limit = 0.5
+		}
+	}
+	 
+	gs_frontline_fighters = {
+		picture = generic_disjointed_gov
+		allowed = {
+		} 
+		removal_cost = -1
+		modifier = {
+			army_attack_factor = 0.05
+			planning_speed = 0.2
+		}
+	}
+	gs_cautious_reserves = {
+		picture = generic_disjointed_gov
+		allowed = {
+		} 
+		removal_cost = -1
+		modifier = {
+			army_defence_factor = 0.05
+			max_planning = 0.2
+		}
+	}
+	gs_espionage_training = {
+		picture = generic_disjointed_gov
+		allowed = { } 
+		removal_cost = -1
+		modifier = {
+			operative_slot  = 1
+			recon_factor  = 0.1
+		}
+	}
+	gs_information_security = {
+		picture = generic_disjointed_gov
+		allowed = {
+		} 
+		removal_cost = -1
+		modifier = {
+			decryption_factor = 0.1
+			encryption_factor = 0.1
+		}
+	}
+	gs_aggressive_army = {
+		picture = generic_disjointed_gov
+		allowed = {
+		} 
+		removal_cost = -1
+		modifier = {
+			army_leader_start_attack_level = 1
+			war_support_factor = 0.2
+			justify_war_goal_time = -0.25 
+		}
+	}
+	gs_defensive_army = {
+		picture = generic_disjointed_gov
+		allowed = {
+		} 
+		removal_cost = -1
+		modifier = {
+			army_leader_start_defense_level = 1
+			stability_factor = 0.2
+			enemy_justify_war_goal_time  = 0.25 
+		}
+	}
+	gs_constant_assault = {
+		picture = generic_disjointed_gov
+		allowed = {
+		} 
+		removal_cost = -1
+		modifier = {
+			offence = 0.01
+			army_speed_factor = 0.1
+		}
+	}
+	gs_stalwart_defense = {
+		picture = generic_disjointed_gov
+		allowed = {
+		} 
+		removal_cost = -1
+		modifier = {
+			defence = 0.01
+			dig_in_speed_factor = 0.25 
+		}
+	}
+	gs_building_fortifications = {
+		picture = generic_disjointed_gov
+		allowed = {
+		} 
+		removal_cost = -1
+		modifier = {
+			production_speed_bunker_factor = 0.2
+			production_speed_coastal_bunker_factor = 0.2
+		}
+	}
+	gs_resource_management_techniques = {
+		picture = generic_disjointed_gov
+		allowed = {
+		} 
+		removal_cost = -1
+		modifier = {
+			local_resources_factor = 0.10 
+			consumer_goods_factor = - 0.05 
+		}
+	}
+	gs_railroad_reconstruction = {
+		picture = generic_disjointed_gov
+		allowed = {
+		} 
+		removal_cost = -1
+		modifier = {
+			production_speed_infrastructure_factor = 0.1
+		}
+	}

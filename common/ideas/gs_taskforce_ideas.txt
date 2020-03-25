@@ -1,0 +1,302 @@
+ideas = {
+	country = {
+	
+	#Starting Ideas
+		fracturedcommand = {
+			picture = generic_disjointed_gov
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+				justify_war_goal_time = +3.0
+				army_org_factor =  -0.5
+			}
+		}
+		entrenched_ideas_1 = {
+			picture = FRA_fortification_focus
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {	
+				max_dig_in_factor = 0.1
+			}
+			research_bonus = {
+				cat_land_doctrine = -0.95
+			}
+		}
+		entrenched_ideas_2 = {
+			picture = FRA_fortification_focus
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {	
+				max_dig_in_factor = 0.05
+			}
+			research_bonus = {
+				cat_land_doctrine = -0.65
+			}
+		}
+		entrenched_ideas_3 = {
+			picture = FRA_fortification_focus
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {	
+				max_dig_in_factor = 0.05
+			}
+			research_bonus = {
+				cat_land_doctrine = -0.35
+			}
+		}
+	#Introduction Ideas
+		ironwill = {
+			picture = political_pressure
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+				political_power_gain = +0.3
+				stability_factor = +0.1				
+			}
+		}
+		justresolve = {
+			picture = bunker_blues
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+				war_support_factor = +0.25
+				stability_factor = +0.25				
+			}
+		}
+		conservedmanpower = {
+			picture = bunker_blues
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+				war_support_factor = -0.10
+				stability_factor = -0.10				
+			}
+		}
+		stubborntenacity = {
+			picture = bunker_blues
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+				war_support_factor = +0.10
+				stability_factor = +0.10				
+			}
+		}
+		skilledspirit = {
+			picture = bunker_blues
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+				industrial_capacity_factory = +0.1
+				production_factory_efficiency_gain_factor = +0.1			
+			}
+		}	
+		healthyspirit = {
+			picture = bunker_blues
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+				monthly_population = +0.15			
+			}
+		}
+
+		improvedresearchmethods = {
+			picture = generic_research_bonus
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+				research_speed_factor =0.05
+				
+			}
+		}
+		division_restructuring = {
+			picture = disjointed_government
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+				intellectuals_drift = 0.5
+				stability_factor = -0.25
+				
+			}
+		}
+		command_entrenchment = {
+			picture = disjointed_government
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+				elites_drift = 0.5
+				war_support_factor = -0.40
+				
+			}
+		}
+		division_secrets_legacy_1 = {
+			picture = disjointed_government
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+				decryption_factor = 0.1
+				
+			}
+		}		
+		division_secrets_legacy_2 = {
+			picture = disjointed_government
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+				decryption_factor = 0.1
+				encryption_factor = 0.1		
+			}
+		}
+		renewed_oaths = {
+			picture = generic_reserve_divisions
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+				conscription = 0.02
+				army_morale_factor = 0.1
+			}	
+		}
+		to_the_future = {
+			picture = generic_victors_of_ww1
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+				research_speed_factor =0.10
+			}	
+		}
+		awake_and_alive = {
+			picture = generic_democratic_drift_bonus
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+				war_support_factor = 0.25
+				production_speed_buildings_factor = 0.1
+			}	
+		}
+#Army Line Ideas
+		nonbiased_recruitment = {
+			picture = generic_infantry_bonus
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+			conscription = -0.01
+			stability_factor = -0.05	
+			}
+		}
+		elite_army = {
+			picture = generic_infantry_bonus
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+			army_org_factor = 0.1
+			special_forces_cap = 0.02	
+			}
+		}
+		professional_army = {
+			picture = generic_infantry_bonus
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+			army_morale_factor = 0.1
+			training_time_army_factor = -0.1	
+			}
+		}
+		internal_reforms_hc = {
+			picture = generic_infantry_bonus
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+				elites_drift = 0.5
+				stability_factor = -0.10
+				stability_weekly = 0.03
+				
+			}
+		}
+		internal_reforms_bd = {
+			picture = generic_infantry_bonus
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+				intellectuals_drift = 0.5
+				stability_factor = -0.10
+				stability_weekly = 0.03
+				
+			}
+		}
+		civilian_oversight = {
+			picture = generic_infantry_bonus
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+				people_drift = 0.2
+				stability_factor = -0.15
+				stability_weekly = 0.02				
+			}
+		}
+		military_culture_bd = {
+			picture = generic_infantry_bonus
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+			intellectuals_drift = 0.01
+			conscription = 0.02
+			non_core_manpower = -0.02	
+			}
+		}
+		military_culture_hc = {
+			picture = generic_infantry_bonus
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+			elites_drift = 0.01
+			conscription = 0.02
+			non_core_manpower = -0.02	
+			}
+		}
+		open_recruitment = {
+			picture = generic_infantry_bonus
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+			people_drift = 0.02
+			conscription = 0.03
+			non_core_manpower = 0.05	
+			}
+		}
+		mahan_building_methods = {
+			picture = generic_infantry_bonus
+			allowed = {
+			}
+			removal_cost = -1
+			modifier = {
+			industrial_capacity_dockyard = 0.1
+			}
+		}
+	}
+}

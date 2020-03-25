@@ -1,0 +1,16 @@
+﻿l_english:
+
+#GS Generic
+    gs_work_in_progress: "§RThis focus is a work in progress.§"
+#HRA Tooltips
+    hra_northern_cuban_road_tt: "Additional infrastructure rewards will be come available as we conquer more of northern Cuba."
+#TCR Tooltips
+    tcr_expand_bf_express_tt: "This focus will add infrastructure to every mainland state we control between Skullhold and Grand Island Ruins."
+
+ #TCR Occupation Laws
+    gs_abandoned_state: "Abandoned State"
+    gs_local_police: "Local Police Force" 
+    gs_military_patrols: "Military Patrols"
+    gs_military_garrison: "Military Garrison"
+    gs_local_gov: "Collaborating Local Government"
+    gs_martial_law: "Martial Law"

@@ -1,0 +1,31 @@
+state = {
+	id = 879
+	name="STATE_879"
+	manpower = 6500
+	state_category = city
+	resources={
+		metal = 4
+	}
+
+	history={
+		owner = FDR
+		add_core_of = FDR
+		victory_points = {
+			10552 15
+		}
+		buildings = {
+			infrastructure = 3
+			industrial_complex = 1
+			arms_factory = 3
+	
+	
+			
+		}
+
+	}
+
+	provinces = {
+		10563 10575 10552 717 10569 10550
+	}
+	
+}

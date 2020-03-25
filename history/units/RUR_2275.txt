@@ -1,0 +1,57 @@
+﻿
+
+division_template = {
+	name = "Raider Horde"
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 0 y = 2 }
+		infantry = { x = 0 y = 3 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		infantry = { x = 1 y = 2 }
+		infantry = { x = 1 y = 3 }
+		infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+		infantry = { x = 2 y = 2 }
+		infantry = { x = 2 y = 3 }
+	}
+}
+
+units = {
+
+
+	division = {
+		name = "Shattered Horde"
+		location = 10545
+		division_template = "Raider Horde"
+		start_experience_factor = 0.6
+		start_equipment_factor = 1.0
+	}
+	
+}
+	
+
+##### Starting Production #####
+#instant_effect = {
+#	add_equipment_production = {
+#		equipment = {
+#			type = energy_equipment_2
+#			creator = "BOS"
+#		}
+#		requested_factories = 10
+#		progress = 0.75
+#		efficiency = 100
+#	}
+#}
+#instant_effect = {
+#	add_equipment_production = {
+#		equipment = {
+#			type = power_armor_equipment_2
+#			creator = "BOS"
+#		}
+#		requested_factories = 7
+#		progress = 0.75
+#		efficiency = 100
+#	}
+#}

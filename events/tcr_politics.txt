@@ -1,0 +1,78 @@
+﻿add_namespace = tcr_politics
+
+#Leadership Conference
+
+country_event = {
+	id = tcr_politics.1
+	title = tcr_politics.1.t
+	desc = tcr_politics.1.d
+	picture = GFX_news_event_nuke
+
+	is_triggered_only = yes
+
+	option = {
+		name = tcr_politics.1.a
+		activate_mission  = tcr_leadership_conference  
+		set_country_flag = political_tension
+	}
+}
+country_event = {
+	id = tcr_politics.2
+	title = tcr_politics.2.t
+	desc = tcr_politics.2.d
+	picture = GFX_news_event_nuke
+
+	is_triggered_only = yes
+
+	option = {
+		name = tcr_politics.2.a
+		set_politics = { ruling_party = elites }
+		complete_national_focus  =  tcr_lead_conference 
+		clr_country_flag = political_tension
+	}
+}
+country_event = {
+	id = tcr_politics.3
+	title = tcr_politics.3.t
+	desc = tcr_politics.3.d
+	picture = GFX_news_event_nuke
+
+	is_triggered_only = yes
+
+	option = {
+		name = tcr_politics.3.a
+		set_politics = { ruling_party = intellectuals }
+		complete_national_focus  =  tcr_lead_conference 
+		clr_country_flag = political_tension
+	}
+}
+country_event = {
+	#Political Deadlock
+	id = tcr_politics.4
+	title = tcr_politics.4.t
+	desc = tcr_politics.4.d
+	picture = GFX_news_event_nuke
+
+	is_triggered_only = yes
+
+	option = {
+		name = tcr_politics.4.a
+		add_political_power = -100
+		add_popularity  = {
+			ideology = elites
+			popularity = .05
+			}
+		country_event = { id = tcr_politics.2 }
+	}
+	option = {
+		name = tcr_politics.4.b
+		add_political_power = -100
+		add_popularity  = {
+			ideology = intellectuals
+			popularity = .05
+			}
+		country_event = { id = tcr_politics.3 }
+	}
+}
+
+# vim: set ft=pdx tw=79 :

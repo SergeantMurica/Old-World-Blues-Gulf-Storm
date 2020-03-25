@@ -1,0 +1,75 @@
+﻿
+division_template = {
+	name = "Cristal Guard"
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		infantry = { x = 1 y = 2 }
+		infantry = { x = 0 y = 2 }
+	}
+}
+
+units = {
+
+
+	division = {
+		name = "Garcia's Own"
+		location = 10546
+		division_template = "Cristal Guard"
+		start_experience_factor = 0.6
+		start_equipment_factor = 0.7
+	}
+
+	division = {
+		name = "Los Defensores"
+		location = 10560
+		division_template = "Cristal Guard"
+		start_experience_factor = 0.4
+		start_equipment_factor = 0.9
+	}	
+	division = {
+		name = "Los Libertadores"
+		location = 8684
+		division_template = "Cristal Guard"
+		start_experience_factor = 0.4
+		start_equipment_factor = 0.9
+	}	
+}
+
+#Captured US Stockpile#
+
+instant_effect = {
+	add_equipment_to_stockpile = {
+			type = ballistic_equipment_3 
+			amount = 60
+			producer = USA
+			}
+		}
+	
+
+##### Starting Production #####
+#instant_effect = {
+#	add_equipment_production = {
+#		equipment = {
+#			type = energy_equipment_2
+#			creator = "BOS"
+#		}
+#		requested_factories = 10
+#		progress = 0.75
+#		efficiency = 100
+#	}
+#}
+#instant_effect = {
+#	add_equipment_production = {
+#		equipment = {
+#			type = power_armor_equipment_2
+#			creator = "BOS"
+#		}
+#		requested_factories = 7
+#		progress = 0.75
+#		efficiency = 100
+#	}
+#}
+

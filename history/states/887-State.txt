@@ -1,0 +1,32 @@
+state = {
+	id = 887
+	name="STATE_887"
+	manpower = 12000
+	state_category = large_town
+
+	resources={
+		metal = 4
+	}
+
+	history={
+		owner = TCR
+		add_core_of = TCR
+		victory_points = {
+			10530 20
+		}
+
+		buildings = {
+			infrastructure = 3
+			industrial_complex = 2
+			arms_factory = 1
+	
+			
+		}
+
+	}
+
+	provinces = {
+		10519 10527 10530 10522
+	}
+	
+}

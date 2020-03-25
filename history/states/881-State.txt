@@ -1,0 +1,32 @@
+state = {
+	id = 881
+	name="STATE_881"
+	manpower = 5750
+	state_category = large_town
+
+	resources={
+		metal = 4
+	}
+
+	history={
+		owner = GCP
+		add_core_of = GCP
+		victory_points = {
+			10584 20
+		}
+
+		buildings = {
+			infrastructure = 4
+			industrial_complex = 2
+			arms_factory = 2
+	
+			
+		}
+
+	}
+
+	provinces = {
+		10604 10584 10574 10576 10582 10577
+	}
+	
+}

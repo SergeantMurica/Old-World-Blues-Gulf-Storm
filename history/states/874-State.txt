@@ -1,0 +1,32 @@
+state = {
+	id = 874
+	name="STATE_874"
+	manpower = 8250
+	state_category = city
+
+	resources={
+		metal = 4
+	}
+
+	history={
+		owner = AMN
+		add_core_of = AMN
+		victory_points = {
+			10651 20
+		}
+		buildings = {
+			infrastructure = 4
+			industrial_complex = 2
+			arms_factory = 2
+			dockyard = 1
+	
+			
+		}
+
+	}
+
+	provinces = {
+		10653 730 10640 10651 10661 10663
+	}
+	
+}

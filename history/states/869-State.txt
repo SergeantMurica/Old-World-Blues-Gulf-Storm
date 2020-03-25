@@ -1,0 +1,35 @@
+state = {
+	id = 869
+	name="STATE_869"
+	manpower = 35000
+	state_category = city
+
+	resources={
+		metal = 6
+		energy = 4
+		water = 4
+	}
+
+	history={
+		owner = RWT
+		add_core_of = RWT
+		victory_points = {
+			10606 20
+		}
+		buildings = {
+			infrastructure = 4
+			industrial_complex = 2
+			arms_factory = 2
+			dockyard = 1
+			10622 = {
+				naval_base = 1
+			}
+		}
+
+	}
+
+	provinces = {
+		10623 10622 10606 10624
+	}
+	
+}

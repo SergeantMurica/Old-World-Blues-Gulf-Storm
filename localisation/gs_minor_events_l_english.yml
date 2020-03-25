@@ -1,0 +1,15 @@
+﻿l_english:
+
+ #Lore line#
+    nf_cuba.1.t: "The Occupation"
+    nf_cuba.1.d: "Before the bombs fell, we lived in the grip of the American Eagle. In an effort to control the chaos around it, the empire invaded our land and forced us to change our way of life. They ruled for decades, and we were forced to choose between resisting American rule, or complying with it."
+    nf_cuba.1.a: "We collaborated with the occupation."
+    nf_cuba.1.b: "We resisted wherever we could."
+    nf_cuba.2.t: "The Revolt"
+    nf_cuba.2.d: "When the bombs fell on the American continent, revolutionary fervor swept Cuba, and took us with it. Decades of occupation had made enemies out of friends and turned brother against brother. Now we had the chance to end it once and for all. Many of our people wanted to run head first into the fray. Others advised a more cautious approach."
+    nf_cuba.2.a: "To hell with caution! It’s now or never!"
+    nf_cuba.2.b: "Form the reserve. Let others do the dying."
+    nf_cuba.3.t: "From the Ashes"
+    nf_cuba.3.d: "The radiation storm hit on the eave of our victory. Men, women, and children scrambled for cover from the wrath of the atomic fire. When the storm finally died, we emerged to find our world changed and broken. What became our priority in the many years to come?"
+    nf_cuba.3.a: "Only our economy can support our people."
+    nf_cuba.3.b: "A strong military is the only way to really be safe."

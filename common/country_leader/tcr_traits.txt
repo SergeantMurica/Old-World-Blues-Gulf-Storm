@@ -1,0 +1,22 @@
+leader_traits = {
+
+#Theorist
+	division_theorist = {
+		sprite = 14
+		random = no
+		experience_gain_army = 0.05
+		intellectuals_drift = 0.20
+		ai_will_do = {
+			factor = 500
+		}
+	}
+	command_theorist = {
+		sprite = 14
+		random = no
+		experience_gain_army = 0.05
+		elites_drift = 0.20
+		ai_will_do = {
+			factor = 500
+		}
+	}
+}

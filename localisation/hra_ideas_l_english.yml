@@ -1,0 +1,33 @@
+﻿l_english:
+
+#Starting Ideas
+    hra_political_unrest: "Political Unrest"
+    hra_scientific_stagnation: "Scientifc Stagnation"
+    legacy_of_sacrifice: "Legacy of Sacrifice"
+    legacy_of_sacrifice_desc: "The sacrifice of our ancestors is forever on our minds."
+    legacy_of_ferocity: "Legacy of Ferocity"
+    legacy_of_ferocity_desc: "We carry on the ferocity of our ancestors."
+    hra_military_crackdown: "Military Crackdown"
+    hra_populus_dessention: "Populus Dessention"
+  
+#Politics Line Ideas#
+    hra_loyalist_trials: "Loyalist Trials"
+    hra_ramirez_raids: "Ramirez's Raids"
+    hra_preparing_for_war: "Preparing for War"
+    hra_state_edu: "State Education"
+    hra_imperial_academy_idea: "The Imperial Academy"
+#Army Ideas#
+    hra_professional_army_idea1: "Professional Armed Forces"
+    hra_professional_army_idea2: "Professional Armed Forces"
+    hra_professional_army_idea3: "A National Army"
+    hra_mass_mobilization_idea1: "Mobilized Populus"
+    hra_mass_mobilization_idea2: "Citizen Army"
+    hra_mass_mobilization_idea3: "Army of Revolution"
+    hra_war_college_idea: "Army War College"
+    hra_military_research_grants_idea: "Military Research Grants"
+  
+#Navy/Airforce Ideas#
+    hra_streamlined_navy: "Streamlined Naval Production"
+    hra_naval_academy: "Naval Academy"
+    hra_streamlined_air: "Streamlined Air Production"
+    hra_air_academy: "Air Academy"

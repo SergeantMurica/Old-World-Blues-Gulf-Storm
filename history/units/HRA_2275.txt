@@ -1,0 +1,111 @@
+﻿
+division_template = {
+	name = "Regional Guards"
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		militia  = { x = 1 y = 2 }
+		militia  = { x = 0 y = 2 }
+	}
+	support = {
+	}
+}
+division_template = {
+	name = "People's Vanguard"
+
+	regiments = {
+		spec_ops = { x = 0 y = 0 }
+		spec_ops = { x = 0 y = 1 }
+		spec_ops = { x = 1 y = 0 }
+		spec_ops = { x = 1 y = 1 }
+	}
+	support = {
+		recon_company = { x = 0 y = 1 }
+	}
+}
+
+units = {
+
+
+	division = {
+		name = "Thunder Brigade"
+		location = 10655
+		division_template = "Regional Guards"
+		start_experience_factor = 0.5
+		start_equipment_factor = 1.0
+	}
+
+	division = {
+		name = "Nuka Brigade"
+		location = 10655
+		division_template = "Regional Guards"
+		start_experience_factor = 0.4
+		start_equipment_factor = 0.9
+	}	
+	division = {
+		name = "Titan Brigade"
+		location = 729
+		division_template = "Regional Guards"
+		start_experience_factor = 0.4
+		start_equipment_factor = 0.9
+	}
+	division = {
+		name = "Rouge Brigade"
+		location = 729
+		division_template = "Regional Guards"
+		start_experience_factor = 0.4
+		start_equipment_factor = 0.9
+	}
+	division = {
+		name = "Inferno Vanguard"
+		location = 10654
+		division_template = "People's Vanguard"
+		start_experience_factor = 0.8
+		start_equipment_factor = 1.0
+	}
+		division = {
+		name = "Vanguard of the Storm"
+		location = 10654
+		division_template = "People's Vanguard"
+		start_experience_factor = 0.8
+		start_equipment_factor = 1.0
+	}
+}
+
+#Captured US Stockpile#
+
+instant_effect = {
+	add_equipment_to_stockpile = {
+			type = ballistic_equipment_3 
+			amount = 100
+			producer = USA
+			}
+		}
+	
+
+##### Starting Production #####
+#instant_effect = {
+#	add_equipment_production = {
+#		equipment = {
+#			type = energy_equipment_2
+#			creator = "BOS"
+#		}
+#		requested_factories = 10
+#		progress = 0.75
+#		efficiency = 100
+#	}
+#}
+#instant_effect = {
+#	add_equipment_production = {
+#		equipment = {
+#			type = power_armor_equipment_2
+#			creator = "BOS"
+#		}
+#		requested_factories = 7
+#		progress = 0.75
+#		efficiency = 100
+#	}
+#}
+

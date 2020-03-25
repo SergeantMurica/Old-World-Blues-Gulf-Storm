@@ -1,0 +1,33 @@
+state = {
+	id = 883
+	name="STATE_883"
+	manpower = 15000
+	state_category = town
+
+	resources={
+		metal = 4
+	}
+
+	history={
+		owner = CRC
+		add_core_of = CRC
+		victory_points = {
+			10546 20
+		}
+
+		buildings = {
+			infrastructure = 4
+			industrial_complex = 2
+			arms_factory = 2
+			dockyard = 1
+	
+			
+		}
+
+	}
+
+	provinces = {
+		10560 10556 10558 10546 8684
+	}
+	
+}

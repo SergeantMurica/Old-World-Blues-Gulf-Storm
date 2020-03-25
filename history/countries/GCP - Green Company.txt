@@ -1,0 +1,78 @@
+﻿capital = 882
+oob = "GCP_2275"
+
+set_technology = {
+	tribal_civilization = 1
+	settled_civilization = 1
+	standard_weaponry_tech = 1
+	melee_weaponry_tech_1 = 1
+	ballistic_weaponry_tech_1 = 1
+	support_weaponry = 1
+	spec_ops_equipment_tech_1 = 1
+	spec_ops_equipment_tech_2 = 1
+	hardening_armour_tech = 1
+	spec_ops_equipment_tech_3 = 1
+	anti_tank_equipment_tech_1 = 1
+	recon_company_tech_1 = 1
+}
+
+if = {
+	limit = {
+		has_dlc = "Man the Guns"
+	}
+	set_technology = {
+		nautics_tech_1 = 1
+		light_navy_hull_tech_1 = 1
+		naval_invasion_tech_1 = 1
+	}
+}
+if = {
+	limit = {
+		NOT = { has_dlc = "Man the Guns" }
+	}
+	set_technology = {
+		nautics_tech_non_mtg_1 = 1
+		light_navy_hull_tech_non_mtg_1 = 1
+		naval_invasion_tech_non_mtg_1 = 1
+	}
+}
+
+set_stability = 0.35
+set_war_support = 0.2
+set_research_slots = 2
+set_politics = {
+	ruling_party = ruler
+	elections_allowed = no
+
+}
+
+set_popularities = {
+	people = 35
+	elites = 0
+	intellectuals = 0
+	ruler = 65
+}
+
+create_country_leader = {
+	name = "Captain Perez"
+	desc = "EL_SEEYO_DESC"
+	picture = "portrait_ghoul_generic_2.dds"
+	expire = "3000.1.1"
+	ideology = militarist_oligarchy
+	traits = {
+		stout_defender
+	}
+}
+##create_corps_commander = {
+#	name = "El Seeyo"
+#	desc = "EL_SEEYO_DESC"
+#	picture = "portrait_el_seeyo.dds"
+#	skill = 2
+#	traits = {
+#		trait_cautious
+#	}
+#	attack_skill = 1
+#	defense_skill = 3
+#	planning_skill = 1
+#	logistics_skill = 2
+#}

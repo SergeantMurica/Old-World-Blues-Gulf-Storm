@@ -1,0 +1,32 @@
+state = {
+	id = 872
+	name="STATE_872"
+	manpower = 20000
+	state_category = city
+
+	resources={
+		metal = 10
+	}
+
+	history={
+		owner = MBC
+		add_core_of = MBC
+		victory_points = {
+			10643 10
+		}
+		buildings = {
+			infrastructure = 4
+			industrial_complex = 2
+			arms_factory = 2
+			dockyard = 1
+	
+			
+		}
+
+	}
+
+	provinces = {
+		10647 10656 10643 10652
+	}
+	
+}

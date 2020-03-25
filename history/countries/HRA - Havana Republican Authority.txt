@@ -1,0 +1,94 @@
+﻿capital = 867
+oob = "HRA_2275"
+
+set_technology = {
+	tribal_civilization = 1
+	settled_civilization = 1
+	tool_engineering = 1
+	standard_weaponry_tech = 1
+	ballistic_weaponry_tech_1 = 1
+	melee_weaponry_tech_1 = 1
+	pre_construction_industry_tech = 1
+	pre_agriculture_industry_tech = 1
+	pre_recycling_industry_tech = 1
+	basic_industry_tech = 1
+	support_weaponry = 1
+	spec_ops_equipment_tech_1 = 1
+}
+
+if = {
+	limit = {
+		has_dlc = "Man the Guns"
+	}
+	set_technology = {
+		nautics_tech_1 = 1
+		light_navy_hull_tech_1 = 1
+		naval_invasion_tech_1 = 1
+	}
+}
+if = {
+	limit = {
+		NOT = { has_dlc = "Man the Guns" }
+	}
+	set_technology = {
+		nautics_tech_non_mtg_1 = 1
+		light_navy_hull_tech_non_mtg_1 = 1
+		naval_invasion_tech_non_mtg_1 = 1
+	}
+}
+#Starting Rules
+set_rule = { can_declare_war_on_same_ideology = yes}
+
+#Starting Ideas
+add_ideas = { 
+	hra_political_unrest
+	hra_scientific_stagnation
+}
+set_stability = 0.2
+set_war_support = 0.4
+set_research_slots = 3
+set_politics = {
+	ruling_party = ruler
+	elections_allowed = no
+
+}
+
+#Starting Popularities
+set_popularities = {
+	people = 45
+	elites = 5
+	intellectuals = 5
+	ruler = 45
+}
+
+create_country_leader = {
+	name = "Emmanuel Romero"
+	#desc = "EL_SEEYO_DESC"
+	picture = "portrait_HRA_standin_1.dds"
+	expire = "3000.1.1"
+	ideology = warlordship
+	traits = {
+	}
+}
+
+create_country_leader = {
+	name = "Rodrigo Mendieta"
+	#desc = "EL_SEEYO_DESC"
+	picture = "portrait_HRA_standin_2.dds"
+	expire = "3000.1.1"
+	ideology = constitutional_republic
+	traits = {
+	}
+}
+create_field_marshal = {
+	name = "Carlos Ramirez"
+	#desc = ""
+	picture = "portrait_hra_ramirez_temp.dds"
+	skill = 1
+	traits = { strong_trait enduring_trait intelligent_trait
+	}
+	attack_skill = 2
+	defense_skill = 1
+	planning_skill = 2
+	logistics_skill = 2
+}

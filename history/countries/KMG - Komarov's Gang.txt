@@ -1,0 +1,76 @@
+﻿capital = 873
+#oob = "BDT_2275"
+
+set_technology = {
+	tribal_civilization = 1
+	settled_civilization = 1
+	tool_engineering = 1
+	standard_weaponry_tech = 1
+	melee_weaponry_tech_1 = 1
+	support_weaponry = 1
+	demolitions_weaponry_tech = 1
+	fireteam_weaponry_tech = 1
+	bike_tech_1 = 1
+}
+
+if = {
+	limit = {
+		has_dlc = "Man the Guns"
+	}
+	set_technology = {
+		nautics_tech_1 = 1
+		light_navy_hull_tech_1 = 1
+		waterproof_sealing_tech = 1
+		naval_invasion_tech_1 = 1
+	}
+}
+if = {
+	limit = {
+		NOT = { has_dlc = "Man the Guns" }
+	}
+	set_technology = {
+		nautics_tech_non_mtg_1 = 1
+		light_navy_hull_tech_non_mtg_1 = 1
+		waterproof_sealing_tech_non_mtg = 1
+		naval_invasion_tech_non_mtg_1 = 1
+	}
+}
+
+set_stability = 0.2
+set_war_support = 0.55
+set_research_slots = 3
+
+set_politics = {
+	ruling_party = ruler
+	elections_allowed = no
+}
+
+set_popularities = {
+	people = 0
+	elites = 0
+	intellectuals = 0
+	ruler = 100
+}
+
+add_ideas = {
+	raider_nation
+	roaring_machines
+}
+
+create_country_leader = {
+	name = "Cranium"
+	desc = "Cranium_DESC"
+	picture = "portrait_bdt_leader.dds"
+	expire = "3000.1.1"
+	ideology = warlordship
+}
+
+#create_field_marshal = {
+#	name = "Great Chief Shatterhand"
+#	portrait_path = "gfx/leaders/raider/portrait_raider_generic_1.dds"
+#	skill = 4
+#	attack_skill = 3
+#	defense_skill = 4
+#	planning_skill = 3
+#	logistics_skill = 3
+#}

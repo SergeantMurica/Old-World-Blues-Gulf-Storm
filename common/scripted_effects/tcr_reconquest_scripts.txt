@@ -1,0 +1,25 @@
+# WORK IN PROGRESS
+# If you are reading this, you have stumbled upon my super-secret-experamental-no-idea-if-it-works
+# resistance system. Unfortunatly, it is on hold until OWB 2.1 drops, so everything here may end 
+# up even more nonfunctional than it already is. Oh well.
+
+tcr_resistance = {
+	if = {
+		limit = { 
+			has_country_flag = tcr_reconquest_begun
+			}
+		}
+	set_variable = {
+	var = tcr_colony_states
+	value = {num_owned_states MINUS num_core_states}
+	}
+	set_variable = {
+	var = tcr_secured_states
+	value = 0
+	}
+	set_variable = {
+	var = tcr_governed_states
+	value = 0
+	}
+}
+

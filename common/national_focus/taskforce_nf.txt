@@ -1,0 +1,2786 @@
+focus_tree = {
+	id = nf_taskforce
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = TCR
+		}
+	}
+	default = no
+#Lore Line
+	focus = {
+		id = tcr_mission
+		icon = GFX_focus_generic_little_entente
+		cost = 1
+		x = 18
+		y = 0
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_mission entered"
+			}
+			country_event = { id = nf_taskforce.1 }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_mission exited"
+			}
+		}
+	}
+
+
+	focus = {
+		id = tcr_retreat
+		icon = GFX_focus_eng_crush_the_dream
+		cost = 1
+		prerequisite = {
+			focus = tcr_mission
+		}
+		relative_position_id = tcr_mission
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_retreat entered"
+			}
+			country_event = { id = nf_taskforce.2 }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_retreat exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_reconsolidation
+		icon = GFX_focus_secret_rearmament
+		cost = 1
+		prerequisite = {
+			focus = tcr_retreat
+		}
+		relative_position_id = tcr_retreat
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_reorganization entered"
+			}
+			country_event = { id = nf_taskforce.3 }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_reorganization exited"
+			}
+		}
+	}
+	
+	focus = {
+		id = tcr_mandate
+		icon = GFX_focus_chi_mission_to_the_us
+		cost = 1
+		prerequisite = {
+			focus = tcr_reconsolidation
+		}
+		relative_position_id = tcr_reconsolidation
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_mandate entered"
+			}
+			country_event = { id = nf_taskforce.4 }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_mandate exited"
+			}
+		}
+	
+	}
+#Political Line 
+	focus = {
+		id = tcr_lead_conference 
+		icon = GFX_goal_generic_improve_relations
+		cost = 4.3
+		available = {
+			always = no
+			}
+		prerequisite = {
+			focus = tcr_mandate
+		}
+		relative_position_id = tcr_mandate
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_lead_conference entered"
+			}
+			add_political_power = 50
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_lead_conference exited"
+			}
+		}
+	
+	}
+	focus = {
+		id = tcr_fighting_corruption
+		icon = GFX_focus_chi_army_reform
+		cost = 6.5
+		prerequisite = {
+			focus = tcr_new_regime
+			focus = tcr_old_guard
+		}
+		available = {
+			has_political_power > 24
+			}
+		select_effect  = { add_political_power = -25 }
+		continue_if_invalid = yes
+		relative_position_id = tcr_lead_conference
+		x = 0
+		y = 2
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_fighting_corruption entered"
+			}
+				swap_ideas = {
+					remove_idea = corrupt_military_families
+					add_idea = weakened_military_families
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_fighting_corruption exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_internal_reforms
+		icon = GFX_goal_anti_comintern_pact
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_fighting_corruption
+		}
+		available = {
+			has_political_power > 24
+			}
+		select_effect  = { add_political_power = -25 }
+		continue_if_invalid = yes
+		relative_position_id = tcr_fighting_corruption
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_closed_culture_1 entered"
+			}
+			if = {
+				limit = { has_government = intellectuals }
+				swap_ideas = {
+					remove_idea = weakened_military_families
+					add_idea = tcr_volunteerforce
+				}
+					add_timed_idea = {
+						idea = internal_reforms_bd
+						days = 70
+					}
+				}
+			else_if = {
+				limit = { has_government = elites }
+				swap_ideas = {
+					remove_idea = weakened_military_families
+					add_idea = tcr_volunteerforce
+				}
+					add_timed_idea = {
+						idea = internal_reforms_hc
+						days = 70
+					}
+				}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_closed_culture_1 exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_new_regime
+		icon = GFX_goal_generic_air_doctrine
+		cost = 4.3
+		available = {
+			has_government = intellectuals
+			}
+		prerequisite = {
+			focus = tcr_lead_conference
+		}
+		relative_position_id = tcr_lead_conference
+		x = -2
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_new_regime entered"
+			}
+
+			add_timed_idea = {
+				idea = division_restructuring
+				days = 90
+			}
+			set_party_name = { 
+				ideology = elites
+				long_name = TCR_elites_party_division 
+				name = TCR_elites_party_division
+			}
+			set_party_name = { 
+				ideology = intellectuals
+				long_name = TCR_intellectuals_party_division 
+				name = TCR_intellectuals_party_division
+			}			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_new_regime exited"
+			}
+		}
+	
+	}		
+	focus = {
+		id = tcr_past_secrets
+		icon = GFX_goal_generic_forceful_treaty
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_new_regime
+		}
+		relative_position_id = tcr_new_regime
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_past_secrets entered"
+			}
+			country_event = { id = nf_taskforce.6 }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_past_secrets exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_division_option_2a
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_new_regime
+		}
+		relative_position_id = tcr_new_regime
+		x = -2
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_division_option_2b
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_division_option_2a
+		}
+		relative_position_id = tcr_division_option_2a
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_future_vision
+		icon = GFX_goal_demand_sudetenland
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_past_secrets
+		}
+		relative_position_id = tcr_past_secrets
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_future_vision entered"
+			}
+				add_ideas = to_the_future
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_future_vision exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_into_the_unknown
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_future_vision
+		}
+		prerequisite = {
+			focus = tcr_unified_command
+		}
+		prerequisite = {
+			focus = tcr_division_option_2b
+		}
+		relative_position_id = tcr_future_vision
+		x = 0
+		y = 2
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_old_guard
+		icon = GFX_goal_generic_small_arms
+		cost = 4.3
+		available = {
+			has_government = elites
+			}
+		prerequisite = {
+			focus = tcr_lead_conference
+		}
+		relative_position_id = tcr_lead_conference
+		x = 2
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_mandate entered"
+			}
+			
+			add_timed_idea = {
+				idea = command_entrenchment
+				days = 90
+			}
+			country_event = { id = nf_taskforce.5 }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_mandate exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_renew_oath
+		icon = GFX_focus_generic_military_mission
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_old_guard
+		}
+		relative_position_id = tcr_old_guard
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_renew_oath entered"
+			}
+			add_ideas = renewed_oaths
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_renew_oath exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_command_option_2a
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_old_guard
+		}
+		relative_position_id = tcr_old_guard
+		x = 2
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_command_option_2b
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_command_option_2a
+		}
+		relative_position_id = tcr_command_option_2a
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	
+	focus = {
+		id = tcr_end_inaction
+		icon = GFX_focus_generic_the_giant_wakes
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_renew_oath
+		}
+		relative_position_id = tcr_renew_oath
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_end_inaction entered"
+			}
+			add_ideas = awake_and_alive
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_end_inaction exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_last_hope_of_freedom
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_end_inaction
+		}
+		prerequisite = {
+			focus = tcr_unified_command
+		}
+		prerequisite = {
+			focus = tcr_command_option_2b
+		}
+		relative_position_id = tcr_end_inaction
+		x = 0
+		y = 2
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_unified_command
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_end_inaction
+			focus = tcr_future_vision
+		}
+		prerequisite = {
+			focus = tcr_internal_reforms
+		}
+		relative_position_id = tcr_internal_reforms
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			remove_ideas = fracturedcommand
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+#Reconquest line
+	focus = {
+		id = tcr_occupy_shattered_lands
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_unified_command
+		}
+		bypass = {
+			885 = { is_owned_and_controlled_by = ROOT }
+			884 = { is_owned_and_controlled_by = ROOT }
+		}
+		relative_position_id = tcr_unified_command
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_occupy_shattered_lands entered"
+			}
+			if = {
+				limit = { AND = {
+					 RUR = { exists = yes } 
+					 RUR = {has_full_control_of_state = 885}}
+				}
+				create_wargoal = {
+					target = RUR
+					type = annex_everything
+				}
+			}
+			else = {
+				every_other_country = {
+					limit = {
+						has_full_control_of_state = 889
+					}
+					TCR = {
+						create_wargoal = { type = annex_everything target = PREV }
+					}
+				}
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_occupy_shattered_lands exited"
+			}
+		}	
+	}
+	focus = {
+		id = tcr_shattered_highway
+		icon = GFX_goal_generic_production
+		cost = 6.5
+		prerequisite = {
+			focus = tcr_occupy_shattered_lands
+		}
+		available = {
+			885 = { is_owned_and_controlled_by = ROOT }
+			884 = { is_owned_and_controlled_by = ROOT }
+		}
+		relative_position_id = tcr_occupy_shattered_lands
+		x = 0
+		y = 2
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_shattered_highway entered"
+			}
+			884 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+			885 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+			add_state_core = 885
+			add_state_core = 884
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_shattered_highway exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_attack_ancients
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_occupy_shattered_lands
+		}
+		mutually_exclusive = {
+			focus = tcr_puppet_ancients
+			}
+		relative_position_id = tcr_occupy_shattered_lands
+		x = 3
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_attack_ancients"
+			}
+			if = {
+				limit = { IAG = { exists = yes } }
+				create_wargoal = {
+					target = IAG
+					type = annex_everything
+				}
+			}
+			else = {
+				every_other_country = {
+					limit = {
+						has_full_control_of_state = 889
+					}
+					TCR = {
+						create_wargoal = { type = annex_everything target = PREV }
+					}
+				}
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_attack_ancients exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_puppet_ancients
+		icon = GFX_focus_eng_move_to_secure_the_dominions
+		cost = 6.5
+		prerequisite = {
+			focus = tcr_occupy_shattered_lands
+		}
+		mutually_exclusive = {
+			focus = tcr_attack_ancients
+			}
+		available = {
+			is_puppet = no
+			country_exists = IAG
+		}
+		cancel = {
+			OR = {
+				is_subject = yes
+				has_war_with = IAG
+			}
+		}
+		relative_position_id = tcr_occupy_shattered_lands
+		x = 1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_puppet_ancients entered"
+			}
+			IAG = {country_event = { id = nf_taskforce.9 }}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_puppet_ancients exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_rebuild_ancients
+		icon = GFX_goal_generic_production
+		cost = 6.5
+		prerequisite = {
+			focus = tcr_puppet_ancients
+			focus = tcr_attack_ancients
+		}
+		relative_position_id = tcr_puppet_ancients
+		x = 1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_rebuild_ancients entered"
+			}
+			889 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+					}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}	
+			888 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+					}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_rebuild_ancients exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_integrate_ancients
+		icon = GFX_goal_generic_propaganda
+		cost = 8.6
+		available = {
+			has_political_power > 49
+			OR = {
+				IAG = { is_puppet_of = TCR }
+				AND = {
+					888 = { is_owned_and_controlled_by = ROOT }
+					889 = { is_owned_and_controlled_by = ROOT }
+				}
+			}
+		}
+		select_effect  = { add_political_power = -50 }
+		prerequisite = {
+			focus = tcr_rebuild_ancients
+		}
+		relative_position_id = tcr_rebuild_ancients
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			if = { 
+				limit = { IAG = { is_puppet_of = TCR }}
+				annex_country = {
+					target = IAG
+					transfer_troops = no
+				}
+			}
+			add_state_core = 888
+			add_state_core = 889
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_attack_coast
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_occupy_shattered_lands
+		}
+		mutually_exclusive = {
+			focus = tcr_puppet_coast
+		}
+		relative_position_id = tcr_occupy_shattered_lands
+		x = -3
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_attack_coast entered"
+			}
+			if = {
+				limit = { CRC = { exists = yes } }
+				create_wargoal = {
+					target = CRC
+					type = annex_everything
+				}
+			}
+			else = {
+				every_other_country = {
+					limit = {
+						has_full_control_of_state = 883 
+					}
+					TCR = {
+						create_wargoal = { type = annex_everything target = PREV }
+					}
+				}
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_attack_coast exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_puppet_coast
+		icon = GFX_focus_eng_move_to_secure_the_dominions
+		cost = 6.5
+		prerequisite = {
+			focus = tcr_occupy_shattered_lands
+		}
+		mutually_exclusive = {
+			focus = tcr_attack_coast
+		}
+		available = {
+		is_puppet = no
+		country_exists = CRC
+		}
+		cancel = {
+			OR = {
+			is_subject = yes
+			has_war_with = CRC
+			}
+		}
+		relative_position_id = tcr_occupy_shattered_lands
+		x = -1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_puppet_coast entered"
+			}
+			CRC = {country_event = { id = nf_taskforce.12 }}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_puppet_coast exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_rebuild_coast
+		icon = GFX_goal_generic_production
+		cost = 6.5
+		prerequisite = {
+			focus = tcr_puppet_coast
+			focus = tcr_attack_coast
+		}
+		relative_position_id = tcr_puppet_coast
+		x = -1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_rebuild_coast entered"
+			}
+			883 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+					}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_rebuild_coast exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_integrate_coast
+		icon = GFX_goal_generic_propaganda
+		cost = 8.6
+		available = {
+			has_political_power > 49
+			OR = {
+				CRC = { is_puppet_of = TCR }
+				AND = {
+					883 = { is_owned_and_controlled_by = ROOT }
+				}
+			}
+		}
+		select_effect  = { add_political_power = -50 }
+		prerequisite = {
+			focus = tcr_rebuild_coast
+		}
+		relative_position_id = tcr_rebuild_coast
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			if = { 
+				limit = { CRC = { is_puppet_of = TCR }}
+				annex_country = {
+					target = CRC
+					transfer_troops = no
+				}
+			}
+			add_state_core = 883
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_challenge_green_company
+		icon = GFX_goal_generic_major_war
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_shattered_highway
+		}
+		relative_position_id = tcr_shattered_highway
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_mandate entered"
+			}
+			if = {
+				limit = { GCP = { exists = yes } }
+				create_wargoal = {
+					target = GCP
+					type = annex_everything
+				}
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_mandate exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_expand_express
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 8.6
+		prerequisite = {
+			focus = tcr_challenge_green_company
+		}
+		relative_position_id = tcr_challenge_green_company
+		x = -1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			if = { 
+				limit = { 882 = { is_controlled_by =  TCR  } }
+				882 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			if = { 
+				limit = { 881 = { is_controlled_by =  TCR  } }
+				881 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			if = { 
+				limit = { 879 = { is_controlled_by =  TCR  } }
+				879 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			if = { 
+				limit = { 878 = { is_controlled_by =  TCR  } }
+				878 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			if = { 
+				limit = { 877 = { is_controlled_by =  TCR  } }
+				877 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			custom_effect_tooltip = tcr_expand_bf_express_tt
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_forlorn_question
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_challenge_green_company
+		}
+		relative_position_id = tcr_challenge_green_company
+		x = 1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_killing_ghosts
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		cost = 6.5
+		prerequisite = {
+			focus = tcr_challenge_green_company
+		}
+		relative_position_id = tcr_challenge_green_company
+		x = -3
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			if = {
+				limit = { FDR = { exists = yes } }
+				create_wargoal = {
+					target = FDR
+					type = annex_everything
+				}
+			}
+			else = {
+				every_other_country = {
+					limit = {
+						has_full_control_of_state = 879
+					}
+					TCR = {
+						create_wargoal = { type = annex_everything target = PREV }
+					}
+				}
+			}
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_reclaiming_revolucion
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_killing_ghosts
+		}
+		relative_position_id = tcr_killing_ghosts
+		x = 1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_fear_of_god
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_challenge_green_company
+		}
+		relative_position_id = tcr_challenge_green_company
+		x = 3
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			if = {
+				limit = { CTS = { exists = yes } }
+				create_wargoal = {
+					target = CTS
+					type = annex_everything
+				}
+			}
+			else = {
+				every_other_country = {
+					limit = {
+						OR = { 
+							has_full_control_of_state = 878
+							has_full_control_of_state = 877
+						}
+					}
+					TCR = {
+						create_wargoal = { type = annex_everything target = PREV }
+					}
+				}
+			}
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_a_new_soverign
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_fear_of_god
+		}
+		relative_position_id = tcr_fear_of_god
+		x = -1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_old_enemy
+		icon = GFX_goal_generic_position_armies
+		cost = 6.5
+		prerequisite = {
+			focus = tcr_challenge_green_company
+		}
+		relative_position_id = tcr_challenge_green_company
+		x = 0
+		y = 2
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_close_the_distance
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_old_enemy
+		}
+		relative_position_id = tcr_old_enemy
+		x = -1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_ready_final_push
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_old_enemy
+		}
+		relative_position_id = tcr_old_enemy
+		x = 1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_undermine_empire
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_old_enemy
+		}
+		relative_position_id = tcr_old_enemy
+		x = -3
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_rally_oppressed
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_undermine_empire
+		}
+		relative_position_id = tcr_undermine_empire
+		x = 1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_death_to_tyrants
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_rally_oppressed
+		}
+		relative_position_id = tcr_rally_oppressed
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_down_with_republic
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_old_enemy
+		}
+		relative_position_id = tcr_old_enemy
+		x = 3
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_shake_their_resolve
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_down_with_republic
+		}
+		relative_position_id = tcr_down_with_republic
+		x = -1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_communist_end
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_shake_their_resolve
+		}
+		relative_position_id = tcr_shake_their_resolve
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_final_campaign
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_ready_final_push
+		}
+		prerequisite = {
+			focus = tcr_close_the_distance
+		}
+		relative_position_id = tcr_old_enemy
+		x = 0
+		y = 2
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_mopping_up
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_final_campaign
+		}
+		relative_position_id = tcr_final_campaign
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_military_rule
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_mopping_up
+		}
+		relative_position_id = tcr_mopping_up
+		x = -1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_taskforce_justice
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_mopping_up
+		}
+		relative_position_id = tcr_mopping_up
+		x = 1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_united_cuba
+		icon = GFX_goal_generic_national_unity
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_mopping_up
+		}
+		relative_position_id = tcr_mopping_up
+		x = 0
+		y = 2
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+#Armed Forces Line
+	focus = {
+		id = tcr_bring_war
+		icon = GFX_goal_generic_secret_weapon
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_mandate
+		}
+		relative_position_id = tcr_mandate
+		x = 13
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	#Army
+	focus = {
+		id = tcr_by_land
+		icon = GFX_goal_generic_army_doctrines
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_bring_war
+		}
+		relative_position_id = tcr_bring_war
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+
+	focus = {
+		id = tcr_doct_refined_1
+		icon = GFX_goal_generic_cavalry
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_by_land
+		}
+		available = {
+			has_political_power > 24
+			}
+		select_effect  = { add_political_power = -25 }
+		continue_if_invalid = yes
+		mutually_exclusive = {
+	 		focus = tcr_doct_conventional_1
+	 	}
+		relative_position_id = tcr_by_land
+		x = -3
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_doct_refined_1 entered"
+			}
+				add_popularity  = {
+					ideology = intellectuals
+					popularity = .05
+				}
+				swap_ideas = {
+					remove_idea = entrenched_ideas_1
+					add_idea = entrenched_ideas_2
+					
+				}
+
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_doct_refined_1 exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_doct_refined_2
+		icon = GFX_focus_generic_combined_arms
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_doct_refined_1
+		}
+		available = {
+			has_political_power > 24
+			}
+		select_effect  = { add_political_power = -25 }
+		continue_if_invalid = yes
+		relative_position_id = tcr_doct_refined_1
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_doct_refined_2 entered"
+			}
+				swap_ideas = {
+					remove_idea = entrenched_ideas_2
+					add_idea = entrenched_ideas_3
+				}
+			add_tech_bonus = { bonus = 0.6 uses = 1 category = cat_elite_army }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_doct_refined_2 exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_doct_refined_3
+		icon = GFX_goal_generic_special_forces
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_doct_refined_2
+		}
+		relative_position_id = tcr_doct_refined_2
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_doct_refined_3 entered"
+			}
+			remove_ideas = entrenched_ideas_3
+			add_ideas = elite_army
+			add_tech_bonus = { bonus = 0.6 uses = 1 category = cat_elite_army }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_doct_refined_3 exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_doct_conventional_1
+		icon = GFX_goal_generic_position_armies
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_by_land
+		}
+		mutually_exclusive = {
+	 		focus = tcr_doctrine_1
+	 	}
+		available = {
+			has_political_power > 24
+			}
+		select_effect  = { add_political_power = -25 }
+		continue_if_invalid = yes
+		relative_position_id = tcr_by_land
+		x = -1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_doct_conventional_1 entered"
+			}
+				add_popularity  = {
+					ideology = elites
+					popularity = .05
+				}
+				swap_ideas = {
+					remove_idea = entrenched_ideas_1
+					add_idea = entrenched_ideas_2
+					
+				}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_doct_conventional_1 exited"
+			}
+		}	
+	}
+	focus = {
+		id = tcr_doct_conventional_2
+		icon = GFX_focus_hol_the_foundations_of_defense
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_doct_conventional_1
+		}
+		available = {
+			has_political_power > 24
+			}
+		select_effect  = { add_political_power = -25 }
+		continue_if_invalid = yes
+		relative_position_id = tcr_doct_conventional_1
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_doct_conventional_2 entered"
+			}
+			swap_ideas = {
+				remove_idea = entrenched_ideas_2
+				add_idea = entrenched_ideas_3
+			}
+			add_tech_bonus = { bonus = 0.6 uses = 1 category = cat_grand_army }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_doct_conventional_2 exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_doct_conventional_3
+		icon = GFX_goal_generic_army_doctrines
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_doct_conventional_2
+		}
+		relative_position_id = tcr_doct_conventional_2
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_doct_conventional_3 entered"
+			}
+			remove_ideas = entrenched_ideas_3
+			add_ideas = professional_army
+			add_tech_bonus = { bonus = 0.6 uses = 1 category = cat_grand_army }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_doct_conventional_3 exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_walking_tanks
+		icon = GFX_goal_power_armor
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_by_land
+		}
+		mutually_exclusive = {
+			focus = tcr_war_machines
+		}
+		relative_position_id = tcr_by_land
+		x = 1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_military_forges
+		icon = GFX_goal_generic_power_armor
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_walking_tanks
+		}
+		relative_position_id = tcr_walking_tanks
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_armored_spear
+		icon = GFX_goal_generic_focus_vault_tec_power_armor
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_military_forges
+		}
+		relative_position_id = tcr_military_forges
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_war_machines
+		icon = GFX_goal_NCR_Mechanized_Core
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_by_land
+		}
+		mutually_exclusive = {
+			focus = tcr_walking_tanks
+		}
+		relative_position_id = tcr_by_land
+		x = 3
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_autoplants
+		icon = GFX_goal_generic_production2
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_war_machines
+		}
+		relative_position_id = tcr_war_machines
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_rolling_thunder
+		icon = GFX_goal_generic_army_tanks
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_autoplants
+		}
+		relative_position_id = tcr_autoplants
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	#Air Force
+	focus = {
+		id = tcr_by_air
+		icon = GFX_goal_generic_air_doctrine
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_bring_war
+		}
+		relative_position_id = tcr_bring_war
+		x = -6
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_airbases
+		icon = GFX_goal_generic_airbases_focus
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_by_air
+		}
+		relative_position_id = tcr_by_air
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_air_designs
+		icon = GFX_goal_generic_vehicle_plane
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_airbases
+		}
+		relative_position_id = tcr_airbases
+		x = -1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_old_models
+		icon = GFX_goal_generic_air_fighter
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_air_designs
+		}
+		relative_position_id = tcr_air_designs
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_air_doctrines
+		icon = GFX_focus_generic_air_defense
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_airbases
+		}
+		relative_position_id = tcr_airbases
+		x = 1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_new_generation_pilots
+		icon = GFX_goal_generic_air_doctrines_focus
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_air_doctrines
+		}
+		relative_position_id = tcr_air_doctrines
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	#Navy
+	focus = {
+		id = tcr_by_sea
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_bring_war
+		}
+		relative_position_id = tcr_bring_war
+		x = 6
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_gitmo_dockyards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_by_sea
+		}
+		relative_position_id = tcr_by_sea
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_gitmo_dockyards entered"
+			}
+			868 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_gitmo_dockyards exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_doc_naval_1
+		icon = GFX_goal_generic_navy_cruiser
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_gitmo_dockyards
+		}
+		relative_position_id = tcr_gitmo_dockyards
+		x = 1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_doc_naval_1 entered"
+			}
+			add_tech_bonus = { bonus = 0.5 uses = 3 category = cat_naval_doctrine }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_doc_naval_1 exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_naval_staff
+		icon = GFX_goal_generic_amphibious_assault
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_doc_naval_1
+		}
+		relative_position_id = tcr_doc_naval_1
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_mandate entered"
+			}
+			country_event = { id = nf_taskforce.4 }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_mandate exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_naval_tech
+		icon = GFX_focus_generic_navy_battleship2
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_gitmo_dockyards
+		}
+		relative_position_id = tcr_gitmo_dockyards
+		x = -1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_naval_tech entered"
+			}
+			add_tech_bonus = { bonus = 0.5 uses = 2 category = naval_hull_tech_category }
+			add_tech_bonus = { bonus = 0.5 uses = 2 category = naval_module_tech_category }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_naval_tech exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_naval_salvage
+		icon = GFX_goal_BOS_steel_cage
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_naval_tech
+		}
+		relative_position_id = tcr_naval_tech
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_mandate entered"
+			}
+			country_event = { id = nf_taskforce.8 }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_mandate exited"
+			}
+		}
+	}
+#Restoring Cuba
+	focus = {
+		id = tcr_restoring_cuba
+		icon = GFX_goal_generic_building_focus
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_mandate
+		}
+		relative_position_id = tcr_mandate
+		x = -11
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			add_political_power = 50
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_why_we_fight
+		icon = GFX_focus_generic_military_mission
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_restoring_cuba
+		}
+		relative_position_id = tcr_restoring_cuba
+		x = -6
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_those_we_protect
+		icon = GFX_goal_generic_military_sphere
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_why_we_fight
+		}
+		relative_position_id = tcr_why_we_fight
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_new_nationality
+		icon = GFX_goal_generic_generic_diplomatic_focus
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_those_we_protect
+		}
+		mutually_exclusive = {
+			focus = tcr_americanization
+		}
+		relative_position_id = tcr_those_we_protect
+		x = 1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_our_new_home
+		icon = GFX_goal_generic_mountain_fortress
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_new_nationality
+		}
+		relative_position_id = tcr_new_nationality
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_americanization
+		icon = GFX_focus_usa_guarantee_the_american_dream
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_those_we_protect
+		}
+		mutually_exclusive = {
+			focus = tcr_new_nationality
+		}
+		relative_position_id = tcr_those_we_protect
+		x = -1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_reaching_to_the_states
+		icon = GFX_goal_NEW_new_capital
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_americanization
+		}
+		relative_position_id = tcr_americanization
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_old_industry
+		icon = GFX_goal_generic_military_industry_focus
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_restoring_cuba
+		}
+		relative_position_id = tcr_restoring_cuba
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+				add_tech_bonus = { bonus = 0.5 uses = 1 category = tool_tech }
+				add_tech_bonus = { bonus = 0.5 uses = 1 category = industry }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_resource_reclamation
+		icon = GFX_goal_generic_metal_focus
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_old_industry
+		}
+		relative_position_id = tcr_old_industry
+		x = -3
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}	
+	focus = {
+		id = tcr_resourse_management
+		icon = GFX_goal_generic_food_focus
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_resource_reclamation
+		}
+		relative_position_id = tcr_resource_reclamation
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_resource_development_teams
+		icon = GFX_goal_generic_construction2
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_resourse_management
+		}
+		relative_position_id = tcr_resourse_management
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_rebuilding_local_roads
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_old_industry
+		}
+		relative_position_id = tcr_old_industry
+		x = -1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_restore_power
+		icon = GFX_goal_energy
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_rebuilding_local_roads
+		}
+		relative_position_id = tcr_rebuilding_local_roads
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_southern_taskforce_express
+		icon = GFX_goal_generic_infrastructure2
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_restore_power
+		}
+		relative_position_id = tcr_restore_power
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_civfac_1
+		icon = GFX_goal_generic_consumer_goods
+		cost = 6.5
+		prerequisite = {
+			focus = tcr_old_industry
+		}
+		available = {
+			887 = { is_owned_and_controlled_by = ROOT }
+			868 = { is_owned_and_controlled_by = ROOT }
+			}
+		relative_position_id = tcr_old_industry
+		x = 1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_mandate entered"
+			}
+			887 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			
+			868 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_mandate exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_civfac_2
+		icon = GFX_goal_generic_construct_civ_factory
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_civfac_1
+		}
+		relative_position_id = tcr_civfac_1
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_rebuilding_wasteland
+		icon = GFX_goal_generic_slums_focus
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_civfac_2
+		}
+		relative_position_id = tcr_civfac_2
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_milfac_1
+		icon = GFX_focus_focus_fra_maquis
+		cost = 6.5
+		prerequisite = {
+			focus = tcr_old_industry
+		}
+		available = {
+			887 = { is_owned_and_controlled_by = ROOT }
+			868 = { is_owned_and_controlled_by = ROOT }
+			}
+		relative_position_id = tcr_old_industry
+		x = 3
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_milfac_1 entered"
+			}
+			887 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			
+			868 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_milfac_1 exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_milfac_2
+		icon = GFX_goal_generic_construct_mil_factory
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_milfac_1
+		}
+		relative_position_id = tcr_milfac_1
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_arming_for_battle
+		icon = GFX_goal_generic_regular_firearms_focus
+		cost = 4.3
+		prerequisite = {
+			focus = tcr_milfac_2
+		}
+		relative_position_id = tcr_milfac_2
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command entered"
+			}
+			custom_effect_tooltip = gs_work_in_progress
+			
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_unified_command exited"
+			}
+		}
+	}
+	focus = {
+		id = tcr_research_1
+		icon = GFX_focus_research
+		cost = 6.5
+		prerequisite = {
+			focus = tcr_restoring_cuba
+		}
+		relative_position_id = tcr_restoring_cuba
+		x = 5
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_research_1 entered"
+			}
+			
+				add_research_slot = 1
+				
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_research_1 exited"
+			}
+		}
+	
+	}
+	focus = {
+		id = tcr_research_2
+		icon = GFX_goal_generic_radar
+		cost = 6.5
+		prerequisite = {
+			focus = tcr_research_1
+		}
+		relative_position_id = tcr_research_1
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_research_2 entered"
+			}
+			add_tech_bonus = { bonus = 0.5 uses = 2 category = electronics }
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_research_2 exited"
+			}
+		}
+	
+	}
+	focus = {
+		id = tcr_research_3
+		icon = GFX_goal_generic_production2
+		cost = 6.5
+		prerequisite = {
+			focus = tcr_research_2
+		}
+		relative_position_id = tcr_research_2
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_research_3 entered"
+			}
+			add_ideas = improvedresearchmethods
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_research_3 exited"
+			}
+		}
+	
+	}
+	focus = {
+		id = tcr_reverse_engineering
+		icon = GFX_goal_tfv_generic_tech_sharing
+		cost = 8.6
+		prerequisite = {
+			focus = tcr_research_3
+		}
+		relative_position_id = tcr_research_3
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_reverse_engineering entered"
+			}
+			unlock_decision_tooltip = tcr_advancedwep
+			add_research_slot = 1
+			if = {
+				limit = { has_global_flag = debug_logs }
+				log = "[GetDateText]: [Root.GetName] tcr_reverse_engineering exited"
+			}
+		}
+	
+	}
+}

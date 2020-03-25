@@ -1,0 +1,46 @@
+﻿l_english:
+#Admin
+admin_testing: "Admin Testing Commands"
+admin_fire_event: "Fire Target Event"
+admin_fire_focus: "Fire Target Focus"
+
+# Sets
+tcr_rediscover_category: "Reverse Engineering"
+tcr_conference_category: "Political Tension"
+tcr_reconquest_category: "Reconquest and Integration"
+admin_testing: "Admin Testing Commands"
+
+# Reverse Engineering Decisions
+tcr_advancedwep: "Advanced Weaponry"
+tcr_t51: "T-51B Power Armor"
+
+# Reconquest and Integration Decisions
+tcr_attack_fdr: "Fabricate a war goal against [FDR.GetNameDef]!"
+tcr_suprise_attack_fdr: "Launch a suprise attack against [FDR.GetNameDef]!"
+tcr_secure_883: "Secure [883.GetName]"
+tcr_install_gov_883: "Install a government in [883.GetName]"
+tcr_indoctrination_883: "Enact indoctrination campaigns in [883.GetName]"
+tcr_hearts_minds_883: "Enact "Hearts and Minds" campaigns in [883.GetName]"
+tcr_secure_884: "Secure [884.GetName]"
+tcr_install_gov_884: "Install a government in [884.GetName]"
+tcr_indoctrination_884: "Enact indoctrination campaigns in [884.GetName]"
+tcr_hearts_minds_884: "Enact "Hearts and Minds" campaigns in [884.GetName]"
+tcr_secure_885: "Secure [885.GetName]"
+tcr_install_gov_885: "Install a government in [885.GetName]"
+tcr_indoctrination_885: "Enact indoctrination campaigns in [885.GetName]"
+tcr_hearts_minds_885: "Enact "Hearts and Minds" campaigns in [885.GetName]"
+tcr_secure_888: "Secure [888.GetName]"
+tcr_install_gov_888: "Install a government in [888.GetName]"
+tcr_indoctrination_888: "Enact indoctrination campaigns in [888.GetName]"
+tcr_hearts_minds_888: "Enact "Hearts and Minds" campaigns in [888.GetName]"
+tcr_secure_889: "Secure [889.GetName]"
+tcr_install_gov_889: "Install a government in [889.GetName]"
+tcr_indoctrination_889: "Enact indoctrination campaigns in [889.GetName]"
+tcr_hearts_minds_889: "Enact "Hearts and Minds" campaigns in [889.GetName]"
+command_power_max: "£command_power §Y100§!"
+command_power_max_blocked: "£command_power §R100§!"
+
+# Conference Decisions
+tcr_leadership_conference: "Task Force Leadership Conference"
+tcr_command_lobbying: "High Command Lobbying"
+tcr_division_lobbying: "Black Division Lobbying"

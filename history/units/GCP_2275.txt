@@ -1,0 +1,106 @@
+﻿
+division_template = {
+	name = "Defensores Verde"
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		infantry = { x = 1 y = 2 }
+		infantry = { x = 0 y = 2 }
+	}
+	support = {
+		anti_tank_company = { x = 0 y = 0 }
+	}
+}
+division_template = {
+	name = "Fire Guards"
+
+	regiments = {
+		spec_ops = { x = 0 y = 0 }
+		spec_ops = { x = 0 y = 1 }
+		spec_ops = { x = 1 y = 0 }
+		spec_ops = { x = 1 y = 1 }
+	}
+	support = {
+		anti_tank_company = { x = 0 y = 0 }
+		recon_company = { x = 0 y = 1 }
+	}
+}
+
+units = {
+
+
+	division = {
+		name = "Fortress Guard"
+		location = 10565
+		division_template = "Defensores Verde"
+		start_experience_factor = 0.5
+		start_equipment_factor = 0.9
+	}
+
+	division = {
+		name = "Storm Bringers"
+		location = 10559
+		division_template = "Defensores Verde"
+		start_experience_factor = 0.4
+		start_equipment_factor = 0.9
+	}	
+	division = {
+		name = "Long Rifles"
+		location = 10547
+		division_template = "Defensores Verde"
+		start_experience_factor = 0.4
+		start_equipment_factor = 0.9
+	}
+	division = {
+		name = "Iron Defenders"
+		location = 10555
+		division_template = "Defensores Verde"
+		start_experience_factor = 0.4
+		start_equipment_factor = 0.9
+	}
+	division = {
+		name = "Radcroc Brigade"
+		location = 10565
+		division_template = "Fire Guards"
+		start_experience_factor = 0.8
+		start_equipment_factor = 1.0
+	}
+}
+
+#Captured US Stockpile#
+
+instant_effect = {
+	add_equipment_to_stockpile = {
+			type = ballistic_equipment_3 
+			amount = 100
+			producer = USA
+			}
+		}
+	
+
+##### Starting Production #####
+#instant_effect = {
+#	add_equipment_production = {
+#		equipment = {
+#			type = energy_equipment_2
+#			creator = "BOS"
+#		}
+#		requested_factories = 10
+#		progress = 0.75
+#		efficiency = 100
+#	}
+#}
+#instant_effect = {
+#	add_equipment_production = {
+#		equipment = {
+#			type = power_armor_equipment_2
+#			creator = "BOS"
+#		}
+#		requested_factories = 7
+#		progress = 0.75
+#		efficiency = 100
+#	}
+#}
+

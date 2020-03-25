@@ -1,0 +1,30 @@
+state = {
+	id = 880
+	name="STATE_880"
+	manpower = 1500
+	state_category = rural
+
+	resources={
+		metal = 4
+	}
+
+	history={
+		owner = FDR
+		add_core_of = FDR
+		buildings = {
+			infrastructure = 2
+			industrial_complex = 2
+			dockyard = 1
+			10548 = {
+				naval_base = 1
+	
+			}
+		}
+
+	}
+
+	provinces = {
+		10548 10551 10542 
+	}
+	
+}

@@ -1,0 +1,33 @@
+state = {
+	id = 876
+	name="STATE_876"
+	manpower = 4000
+	state_category = rural
+	
+	resources={
+		metal = 4
+	}
+
+	history={
+		owner = COF
+		add_core_of = COF
+		victory_points = {
+			10615 20
+		}
+	
+		buildings = {
+			infrastructure = 4
+			industrial_complex = 2
+			arms_factory = 2
+			dockyard = 1
+	
+			
+		}
+
+	}
+
+	provinces = {
+		10615 10626 10618 10608 10610 725 10597
+	}
+	
+}

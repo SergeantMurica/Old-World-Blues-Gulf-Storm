@@ -1,0 +1,662 @@
+focus_tree = {
+	id = estate_nf
+	country = {
+		factor=0
+		modifier = {
+			add = 27
+			OR = {
+				original_tag = AMN
+				original_tag = COF
+				original_tag = CRC
+				original_tag = CTS
+				original_tag = FDR
+				original_tag = GBR
+				original_tag = GCP
+				original_tag = IAG
+				original_tag = KMG
+				original_tag = MBC
+				original_tag = RUR
+				original_tag = RWT
+				original_tag = GCP
+				original_tag = TES
+			}
+		}   
+	}
+#Lore Focus#	
+
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_life_under_eagle
+		icon = GFX_goal_generic_territory_or_war
+		x =10 
+		y =0 
+		completion_reward = {
+			country_event = { id = nf_cuba.1 }
+
+		}
+		cost = 1
+		available_if_capitulated = yes  
+	}
+	
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_the_great_revolt
+		icon = GFX_focus_focus_fra_revolution_utmost
+		x =10 
+		y =1
+		prerequisite = {
+			focus = gs_life_under_eagle
+		}		
+		completion_reward = {
+			country_event = { id = nf_cuba.2 }
+
+		}
+		cost = 1
+		available_if_capitulated = yes  
+	}
+	
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_after_the_storm
+		icon = GFX_focus_eng_organise_the_blackshirts
+		x =10 
+		y =2
+		prerequisite = {
+			focus = gs_the_great_revolt
+		}		
+		completion_reward = {
+			country_event = { id = nf_cuba.3 }
+		}
+		cost = 1
+		available_if_capitulated = yes  
+	}
+#Industry Line
+
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_reclaiming_factories
+		icon = GFX_goal_generic_construct_civ_factory
+		x =9 
+		y =3
+		prerequisite = {
+			focus = gs_after_the_storm
+		}		
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = industrial_complex
+										size > 0
+										include_locked = yes
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+		}
+		cost = 5
+		available_if_capitulated = yes  
+	}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_recycling_ruins
+		icon = GFX_goal_generic_large_scale_normal_industry_focus
+		relative_position_id = "gs_reclaiming_factories"
+		x =0
+		y =2
+		prerequisite = {
+			focus = gs_reclaiming_factories
+		}		
+		cost = 8.6
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_resource = {
+					type = metal
+					amount = 6
+				}
+				add_resource = {
+					type = composites
+					amount = 3
+				}
+			}
+		}
+		available_if_capitulated = yes  
+	}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_arms_repair
+		icon = GFX_goal_generic_construct_mil_factory
+		x =11 
+		y =3
+		prerequisite = {
+			focus = gs_after_the_storm
+		}		
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = arms_factory
+										size > 0
+										include_locked = yes
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+
+		}
+		cost = 5
+		available_if_capitulated = yes  
+	}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_resource_management
+		icon = GFX_goal_generic_supplies_focus
+		relative_position_id = "gs_arms_repair"
+		x =0
+		y =2
+		cost = 8.6
+		prerequisite = {
+			focus = gs_arms_repair
+		}
+		completion_reward = {
+			add_ideas = gs_resource_management_techniques
+		}
+		available_if_capitulated = yes  
+	}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_infrastructure_campaign
+		icon = GFX_goal_generic_production
+		x =10 
+		y =4
+		cost = 8.6
+		prerequisite = {
+			focus = gs_reclaiming_factories
+			focus = gs_arms_repair
+		}		
+		completion_reward = {
+			add_ideas = gs_railroad_reconstruction
+		}
+		available_if_capitulated = yes  
+	}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_old_world_secrets
+		icon = GFX_goal_generic_production
+		relative_position_id = "gs_infrastructure_campaign"
+		x =0
+		y =2
+		prerequisite = {
+			focus = gs_infrastructure_campaign
+		}	
+		prerequisite = {
+			focus = gs_resource_management
+		}
+		prerequisite = {
+			focus = gs_recycling_ruins
+		}
+		cost = 8.6
+		available_if_capitulated = yes  
+	}
+	
+#Miltary Tree#
+
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_the_state_guard
+		icon = GFX_focus_secret_rearmament
+		relative_position_id = gs_after_the_storm
+		x = -6
+		y = 1
+		prerequisite = {
+			focus = gs_after_the_storm
+		}		
+		completion_reward = {
+			army_experience = 100
+		}
+		cost = 5
+		available_if_capitulated = yes  
+		}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_electronic_advancement
+		icon = GFX_goal_generic_data_focus
+		relative_position_id = gs_the_state_guard
+		x = -3
+		y = 1
+		prerequisite = {
+			focus = gs_the_state_guard
+		}
+		completion_reward = {
+		add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = electronics
+			}
+		}
+		cost = 8.6
+		available_if_capitulated = yes  
+		}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_information_war
+		icon = GFX_goal_generic_intelligence_exchange
+		relative_position_id = gs_electronic_advancement
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = gs_electronic_advancement
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = { has_dlc = "La Résistance" }
+				}
+				add_ideas = gs_information_security
+			}
+			if = {
+				limit = { has_dlc = "La Résistance" }
+				add_ideas = gs_espionage_training
+			}
+		}
+		cost = 8.6
+		available_if_capitulated = yes  
+		}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_research_and_dev
+		icon = GFX_focus_research
+		relative_position_id = gs_information_war
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = gs_information_war
+		}
+		completion_reward = {
+			add_research_slot = 1
+		}
+		cost = 8.6
+		available_if_capitulated = yes  
+		}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_army_of_offense
+		icon = GFX_focus_RAJ_lions_of_the_great_war
+		relative_position_id = gs_the_state_guard
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = gs_the_state_guard
+		}
+		mutually_exclusive = { focus = gs_army_of_defense }
+		completion_reward = {
+			add_ideas = gs_aggressive_army
+		}
+		cost = 8.6
+		available_if_capitulated = yes  
+		}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_ferocious_assaults
+		icon = GFX_focus_prc_infiltration
+		relative_position_id = gs_army_of_offense
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = gs_army_of_offense
+		}
+		completion_reward = {
+			add_ideas = gs_constant_assault
+		}
+		cost = 8.6
+		available_if_capitulated = yes  
+		}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_recon_efforts
+		icon = GFX_goal_generic_cavalry
+		relative_position_id = gs_ferocious_assaults
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = gs_ferocious_assaults
+		}
+		completion_reward = {
+		add_tech_bonus = {
+				bonus = 0.50
+				uses = 2
+				category = support_recon_tech_category
+			}
+		}
+		cost = 8.6
+		available_if_capitulated = yes  
+	}	
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_army_of_defense
+		icon = GFX_goal_generic_defence
+		relative_position_id = gs_the_state_guard
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = gs_the_state_guard
+		}	
+		mutually_exclusive = { focus = gs_army_of_offense }	
+		completion_reward = {
+			add_ideas = gs_defensive_army
+		}
+		cost = 8.6
+		available_if_capitulated = yes  
+	}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_unyielding_resolve
+		icon = GFX_goal_generic_small_arms
+		relative_position_id = gs_army_of_defense
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = gs_army_of_defense
+		}
+		completion_reward = {
+			add_ideas = gs_stalwart_defense
+		}
+		cost = 8.6
+		available_if_capitulated = yes  
+		}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_fortification_efforts
+		icon = GFX_goal_generic_construct_military
+		relative_position_id = gs_unyielding_resolve
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = gs_unyielding_resolve
+		}
+		completion_reward = {
+			add_ideas = gs_building_fortifications
+		}
+		cost = 8.6
+		available_if_capitulated = yes  
+		}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_ideas_on_war
+		icon = GFX_goal_generic_army_doctrines
+		relative_position_id = gs_the_state_guard
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = gs_the_state_guard
+		}		
+		completion_reward = {
+			add_tech_bonus = {
+				name = land_doc_bonus
+				bonus = 0.5
+				uses = 1
+				category = cat_land_doctrine
+				}
+		}
+		cost = 8.6
+		available_if_capitulated = yes  
+		}
+		
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_weapons_of_war
+		icon = GFX_goal_generic_regular_firearms_focus
+		relative_position_id = gs_ideas_on_war
+		cost = 8.6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = gs_ideas_on_war
+		}		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = ballistic_weaponry_tech_category
+			}
+		}
+		available_if_capitulated = yes  
+		}
+		
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_support_equipment
+		icon = GFX_goal_generic_building_focus
+		cost = 8.6
+		relative_position_id = gs_weapons_of_war
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = gs_weapons_of_war
+		}		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = support_tech_category
+			}
+		}
+		available_if_capitulated = yes  
+	}
+		
+#Great Powers line
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_great_powers
+		icon = GFX_focus_generic_treaty
+		cost = 5
+		relative_position_id = gs_after_the_storm
+		x = 6
+		y = 1
+		prerequisite = {
+			focus = gs_after_the_storm
+		}
+		available_if_capitulated = no		
+		completion_reward = {
+			add_political_power = 100
+		}	 
+	}	
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_alone_defiant
+		icon = GFX_goal_generic_small_arms
+		cost = 5
+		relative_position_id = gs_great_powers
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = gs_great_powers
+		}
+		available_if_capitulated = no	
+		completion_reward = {
+		}	 
+	}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_another_revolt
+		icon = GFX_goal_generic_small_arms
+		cost = 5
+		relative_position_id = gs_alone_defiant
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = gs_alone_defiant
+		}
+		available_if_capitulated = no	
+		completion_reward = {
+		}	 
+	}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_war_with_taskforce
+		icon = GFX_goal_generic_small_arms
+		cost = 5
+		relative_position_id = gs_another_revolt
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = gs_another_revolt
+		}
+		available_if_capitulated = no	
+		completion_reward = {
+		}	 
+	}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_no_more_imperialists
+		icon = GFX_goal_generic_small_arms
+		cost = 5
+		relative_position_id = gs_alone_defiant
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = gs_alone_defiant
+		}
+		available_if_capitulated = no	
+		completion_reward = {
+		}	 
+	}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_war_with_havana
+		icon = GFX_goal_generic_small_arms
+		cost = 5
+		relative_position_id = gs_no_more_imperialists
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = gs_no_more_imperialists
+		}
+		available_if_capitulated = no	
+		completion_reward = {
+		}	 
+	}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_seeking_allies
+		icon = GFX_goal_generic_small_arms
+		cost = 5
+		relative_position_id = gs_alone_defiant
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = gs_alone_defiant
+		}
+		available_if_capitulated = no	
+		completion_reward = {
+		}	 
+	}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_alliance
+		icon = GFX_goal_generic_small_arms
+		cost = 5
+		relative_position_id = gs_seeking_allies
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = gs_seeking_allies
+		}
+		available_if_capitulated = no	
+		completion_reward = {
+		}	 
+	}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_ovatures_to_eagle
+		icon = GFX_goal_generic_small_arms
+		cost = 5
+		relative_position_id = gs_great_powers
+		x = -3
+		y = 1
+		prerequisite = {
+			focus = gs_great_powers
+		}
+		available_if_capitulated = no	
+		completion_reward = {
+		}	 
+	}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_cooperating_with_taskforce
+		icon = GFX_goal_generic_small_arms
+		cost = 5
+		relative_position_id = gs_ovatures_to_eagle
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = gs_ovatures_to_eagle
+		}
+		available_if_capitulated = no	
+		completion_reward = {
+		}	 
+	}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_bow_to_taskforce
+		icon = GFX_goal_generic_small_arms
+		cost = 5
+		relative_position_id = gs_cooperating_with_taskforce
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = gs_cooperating_with_taskforce
+		}
+		available_if_capitulated = no	
+		completion_reward = {
+		}	 
+	}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_appeal_to_havana
+		icon = GFX_goal_generic_small_arms
+		cost = 5
+		relative_position_id = gs_great_powers
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = gs_great_powers
+		}
+		available_if_capitulated = no	
+		completion_reward = {
+		}	 
+	}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_cooperating_with_havana
+		icon = GFX_goal_generic_small_arms
+		cost = 5
+		relative_position_id = gs_appeal_to_havana
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = gs_appeal_to_havana
+		}
+		available_if_capitulated = no	
+		completion_reward = {
+		}	 
+	}
+	focus = { ai_will_do = { factor = 1} 
+		id = gs_bow_to_havana
+		icon = GFX_goal_generic_small_arms
+		cost = 5
+		relative_position_id = gs_cooperating_with_havana
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = gs_cooperating_with_havana
+		}
+		available_if_capitulated = no	
+		completion_reward = {
+		}	 
+	}

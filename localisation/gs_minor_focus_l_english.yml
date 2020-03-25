@@ -1,0 +1,48 @@
+﻿l_english:
+
+ #Lore line#
+    gs_life_under_eagle: "Life Under the Eagle"
+    gs_life_under_eagle_desc: "Living under occupation affected us deeply."
+    gs_the_great_revolt: "The Great Revolt"
+    gs_the_great_revolt_desc: "After the bombs fell, the winds of revolution swept over Cuba. Our territory would never be the same."
+    gs_after_the_storm: "After the Storm"
+    gs_after_the_storm_desc: "When the radiation storm hit, the bonds that held us together fell appart."
+    
+ #Military Line#
+    gs_the_state_guard: "The State Guard"
+    gs_electronic_advancement: "Electronic Advancements"
+    gs_information_war: "Information Warfare"
+    gs_research_and_dev: "Research and Development"
+    gs_army_of_offense: "An Offensive Army"
+    gs_army_of_defense: "A Defensive Army"
+    gs_ferocious_assaults: "Ferocious Assaults"
+    gs_unyielding_resolve: "Unyielding Resolve"
+    gs_recon_efforts: "Recon Efforts"
+    gs_fortification_efforts: "Fortification Efforts"
+    gs_ideas_on_war: "Ideas on War"
+    gs_weapons_of_war: "Weapons of War"
+    gs_support_equipment: "Support Equipment"
+    
+ #Industry Line#
+    gs_reclaiming_factories: "Reclaiming Factories"
+    gs_arms_repair: "Military Expansion"
+    gs_recycling_ruins: "Recycling Ruins"
+    gs_resource_management: "Resource Management"
+    gs_infrastructure_campaign: "Infrastructure Campaign"
+    gs_old_world_secrets: "Old World Secrets"
+   
+  #Great Powers Line#
+    gs_great_powers: "The Great Powers"
+    gs_ovatures_to_eagle: "Ovatures to the Eagle"
+    gs_cooperating_with_taskforce: "Cooperating with the Taskforce"
+    gs_bow_to_taskforce: "Bow to Gitmo"
+    gs_alone_defiant: "Alone and Defiant"
+    gs_another_revolt: "Another Revolt"
+    gs_no_more_imperialists: "No More Imperialists"
+    gs_seeking_allies: "Seeking Allies"
+    gs_war_with_taskforce: "War with the Taskforce"
+    gs_war_with_havana: "War with Havana"
+    gs_alliance: "The Alliance of Free Nations"
+    gs_appeal_to_havana: "Appeal to Havana"
+    gs_cooperating_with_havana: "Cooperating with Havana"
+    gs_bow_to_havana: "Bow to Havana"

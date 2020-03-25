@@ -1,0 +1,324 @@
+﻿add_namespace = nf_taskforce
+#Our Mission
+country_event = {
+	id = nf_taskforce.1
+	title = nf_taskforce.1.t
+	desc = nf_taskforce.1.d
+	picture = GFX_news_event_020
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_taskforce.1.a
+
+		add_ideas = ironwill
+
+	}
+
+	option = {
+		name = nf_taskforce.1.b
+
+		add_ideas = justresolve
+	}
+}
+#Our retreat
+country_event = {
+	id = nf_taskforce.2
+	title = nf_taskforce.2.t
+	desc = nf_taskforce.2.d
+	picture = GFX_news_event_nuke
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_taskforce.2.a
+
+		add_ideas = conservedmanpower
+		add_equipment_to_stockpile = {
+			type = ballistic_equipment_3 
+			amount = 200
+			producer = USA
+			}
+		add_equipment_to_stockpile = {
+			type = power_armor_equipment_4 
+			amount = 100
+			producer = USA
+			}
+		868 = {add_manpower = 1000}
+
+
+	}
+
+	option = {
+		name = nf_taskforce.2.b
+
+		add_ideas = stubborntenacity
+	}
+}
+#Our Reconsolidation
+country_event = {
+	id = nf_taskforce.3
+	title = nf_taskforce.3.t
+	desc = nf_taskforce.3.d
+	picture = GFX_news_event_nuke
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_taskforce.3.a
+
+		add_ideas = skilledspirit
+		868 = {add_manpower = 500}
+	}
+
+	option = {
+		name = nf_taskforce.3.b
+		
+		add_ideas = healthyspirit
+		868 = {add_manpower = 500}
+	}
+}
+#A New Mandate
+country_event = {
+	id = nf_taskforce.4
+	title = nf_taskforce.4.t
+	desc = nf_taskforce.4.d
+	picture = GFX_news_event_nuke
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_taskforce.4.a
+	}
+}
+#COL Fisher Resignation
+country_event = {
+	id = nf_taskforce.5
+	title = nf_taskforce.5.t
+	desc = nf_taskforce.5.d
+	picture = GFX_news_event_nuke
+	is_triggered_only = yes
+	option = {
+		name = nf_taskforce.5.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Colonel Marietta"
+			#desc = ""
+			picture = "portrait_ghoul_generic_1_temp.dds"
+			ideology = militarist_oligarchy
+			traits = {
+			}
+		}
+	}
+}
+#Division Original Mission
+
+country_event = {
+	id = nf_taskforce.6
+	title = nf_taskforce.6.t
+	desc = nf_taskforce.6.d
+	picture = GFX_news_event_nuke
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_taskforce.6.a
+		country_event = { id = nf_taskforce.7 }
+		add_ideas = division_secrets_legacy_1
+	}
+}
+#Division Sinister Connections
+country_event = {
+	id = nf_taskforce.7
+	title = nf_taskforce.7.t
+	desc = nf_taskforce.7.d
+	picture = GFX_news_event_nuke
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_taskforce.7.a
+		swap_ideas = {
+			remove_idea = division_secrets_legacy_1
+			add_idea = division_secrets_legacy_2
+		}
+	}
+}
+#The Mahan
+country_event = {
+	id = nf_taskforce.8
+	title = nf_taskforce.8.t
+	desc = nf_taskforce.8.d
+	picture = GFX_news_event_nuke
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_taskforce.8.a
+		add_ideas = mahan_building_methods
+	}
+}
+#Immortal Ancients Puppet Demand
+country_event = {
+	id = nf_taskforce.9
+	title = nf_taskforce.9.t
+	desc = nf_taskforce.9.d
+	picture = GFX_news_event_nuke
+	is_triggered_only = yes
+	
+    #Acceptance
+	option = {
+		name = nf_taskforce.9.a
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0.5
+				strength_ratio = { tag = TCR ratio > 1.5 }
+			}
+			modifier = {
+				factor = 0.2
+				strength_ratio = { tag = TCR ratio > 3 }
+			}
+			modifier = {
+				factor = 0
+				strength_ratio = { tag = TCR ratio > 5 }
+			}
+		}
+		TCR = {country_event = {id = nf_taskforce.10 hours = 2}}
+	}
+	#Refusal
+	option = {
+		name = nf_taskforce.9.b
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0.5
+				strength_ratio = { tag = TCR ratio < 1 }
+			}
+			modifier = {
+				factor = 0.2
+				strength_ratio = { tag = TCR ratio < 0.5 }
+			}
+			modifier = {
+				factor = 0
+				strength_ratio = { tag = TCR ratio < 0.2 }
+			}
+		}
+		TCR = {country_event = {id = nf_taskforce.11 hours = 2 }}
+	}
+}
+#Immortal Ancients Puppet Accept
+country_event = {
+	id = nf_taskforce.10
+	title = nf_taskforce.10.t
+	desc = nf_taskforce.10.d
+	picture = GFX_news_event_nuke
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_taskforce.10.a
+		puppet = IAG
+		IAG = {set_cosmetic_tag = IAG_TCR}
+	}
+}
+#Immortal Ancients Puppet Reject
+country_event = {
+	id = nf_taskforce.11
+	title = nf_taskforce.11.t
+	desc = nf_taskforce.11.d
+	picture = GFX_news_event_nuke
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_taskforce.11.a
+		create_wargoal = {
+			target = IAG
+			type = annex_everything
+		}
+	}
+}
+#Cristal Coast Puppet Demand
+country_event = {
+	id = nf_taskforce.12
+	title = nf_taskforce.12.t
+	desc = nf_taskforce.12.d
+	picture = GFX_news_event_nuke
+	is_triggered_only = yes
+	
+    #Acceptance
+	option = {
+		name = nf_taskforce.12.a
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0.5
+				strength_ratio = { tag = TCR ratio > 1.5 }
+			}
+			modifier = {
+				factor = 0.2
+				strength_ratio = { tag = TCR ratio > 3 }
+			}
+			modifier = {
+				factor = 0
+				strength_ratio = { tag = TCR ratio > 5 }
+			}
+		}
+		TCR = {country_event = {id = nf_taskforce.13 hours = 2}}
+	}
+	#Refusal
+	option = {
+		name = nf_taskforce.12.b
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0.5
+				strength_ratio = { tag = TCR ratio < 1 }
+			}
+			modifier = {
+				factor = 0.2
+				strength_ratio = { tag = TCR ratio < 0.5 }
+			}
+			modifier = {
+				factor = 0
+				strength_ratio = { tag = TCR ratio < 0.2 }
+			}
+		}
+		TCR = {country_event = {id = nf_taskforce.14 hours = 2 }}
+	}
+}
+#Cristal Coast Puppet Accept
+country_event = {
+	id = nf_taskforce.13
+	title = nf_taskforce.13.t
+	desc = nf_taskforce.13.d
+	picture = GFX_news_event_nuke
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_taskforce.13.a
+		puppet = CRC
+		CRC = {set_cosmetic_tag = CRC_TCR}
+	}
+}
+#Cristal Coast Puppet Reject
+country_event = {
+	id = nf_taskforce.14
+	title = nf_taskforce.14.t
+	desc = nf_taskforce.14.d
+	picture = GFX_news_event_nuke
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_taskforce.14.a
+		create_wargoal = {
+			target = CRC
+			type = annex_everything
+		}
+	}
+}
+
+# vim: set ft=pdx tw=79 :

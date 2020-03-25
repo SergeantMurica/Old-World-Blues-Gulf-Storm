@@ -1,0 +1,33 @@
+state = {
+	id = 871
+	name="STATE_871"
+	manpower = 4000
+	state_category = city
+
+	resources={
+		metal = 4
+	}
+
+	history={
+		owner = GBR
+		add_core_of = GBR
+		victory_points = {
+			10585 30
+		}
+		buildings = {
+			infrastructure = 4
+			industrial_complex = 2
+			arms_factory = 2
+			dockyard = 1
+			10589 = {
+				naval_base = 1
+			}
+		}
+
+	}
+
+	provinces = {
+		723 10581 10585 10586 10588 10589 10591 10594 10596 10599 10600
+	}
+	
+}

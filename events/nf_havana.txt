@@ -1,0 +1,316 @@
+﻿add_namespace = nf_havana
+
+#The Great Revolt
+country_event = {
+	id = nf_havana.1
+	title = nf_havana.1.t
+	desc = nf_havana.1.d
+	picture = GFX_news_event_020
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_havana.1.a
+		add_ideas = legacy_of_sacrifice
+	}
+
+	option = {
+		name = nf_havana.1.b
+		add_ideas = legacy_of_ferocity
+	}
+}
+country_event = {
+	id = nf_havana.2
+	title = nf_havana.2.t
+	desc = nf_havana.2.d
+	picture = GFX_news_event_001
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_havana.2.a
+		add_ideas = never_surrender
+	}
+	option = {
+		name = nf_havana.2.b
+		add_ideas = standing_united
+
+	}
+}
+country_event = {
+	id = nf_havana.3
+	title = nf_havana.3.t
+	desc = nf_havana.3.d
+	picture = GFX_news_event_001
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_havana.3.a
+		867 = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+	option = {
+		name = nf_havana.3.b
+		867 = {
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+country_event = {
+	id = nf_havana.4
+	title = nf_havana.4.t
+	desc = nf_havana.4.d
+	picture = GFX_news_event_001
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_havana.4.a
+		add_timed_idea = {
+			idea = hra_populus_dessention 
+			days = 30
+		}
+	}
+	option = {
+		name = nf_havana.4.b
+		add_timed_idea = {
+			idea = hra_military_crackdown 
+			days = 30
+		}
+	}
+}
+#No Confidence Vote
+country_event = {
+	id = nf_havana.5
+	title = nf_havana.5.t
+	desc = nf_havana.5.d
+	picture = GFX_news_event_001
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_havana.5.a
+		kill_country_leader = yes
+		create_country_leader = {
+			name = "Carlos Ramirez"
+			#desc = ""
+			picture = "portrait_hra_ramirez_temp.dds"
+			ideology = warlordship
+			traits = {
+			}
+		}
+		set_politics = {
+			ruling_party = people
+			}
+		867 = {add_manpower = -250}
+		
+		}
+	}
+#Ramirez's Raids
+country_event = {
+	id = nf_havana.6
+	title = nf_havana.6.t
+	desc = nf_havana.6.d
+	picture = GFX_news_event_001
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_havana.6.a
+		add_timed_idea = {
+			idea = hra_ramirez_raids 
+			days = 60
+		}
+		867 = {add_manpower = -750}
+		}
+	}
+#Loyalist Trials
+country_event = {
+	id = nf_havana.7
+	title = nf_havana.7.t
+	desc = nf_havana.7.d
+	picture = GFX_news_event_001
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_havana.7.a
+		add_timed_idea = {
+			idea = hra_loyalist_trials
+			days = 60
+		}
+		867 = {add_manpower = -50}
+		}
+	}
+#MBC Subjugation Demand
+country_event = {
+	id = nf_havana.8
+	title = nf_havana.8.t
+	desc = nf_havana.8.d
+	picture = GFX_news_event_001
+
+	is_triggered_only = yes
+
+    #Acceptance
+	option = {
+		name = nf_havana.8.a
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0.75
+				strength_ratio = { tag = HRA ratio > 1.5 }
+			}
+			modifier = {
+				factor = 0.4
+				strength_ratio = { tag = HRA ratio > 3 }
+			}
+			modifier = {
+				factor = 0.2
+				strength_ratio = { tag = HRA ratio > 5 }
+			}
+		}
+		HRA = {country_event = {id = nf_havana.9 hours = 2}}
+	}
+	#Refusal
+	option = {
+		name = nf_havana.8.b
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0.5
+				strength_ratio = { tag = HRA ratio < 1 }
+			}
+			modifier = {
+				factor = 0.2
+				strength_ratio = { tag = HRA ratio < 0.5 }
+			}
+			modifier = {
+				factor = 0
+				strength_ratio = { tag = HRA ratio < 0.2 }
+			}
+		}
+		HRA = {country_event = {id = nf_havana.10 hours = 2 }}
+	}
+}
+#MBC Puppet
+country_event = {
+	id = nf_havana.9
+	title = nf_havana.9.t
+	desc = nf_havana.9.d
+	picture = GFX_news_event_nuke
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_havana.9.a
+		puppet = MBC
+	}
+}
+#MBC War
+country_event = {
+	id = nf_havana.10
+	title = nf_havana.10.t
+	desc = nf_havana.10.d
+	picture = GFX_news_event_nuke
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_havana.10.a
+		create_wargoal = {
+			target = MBC
+			type = annex_everything
+		}
+	}
+}	
+#RWT Subjugation Demand
+country_event = {
+	id = nf_havana.11
+	title = nf_havana.11.t
+	desc = nf_havana.11.d
+	picture = GFX_news_event_001
+
+	is_triggered_only = yes
+
+    #Acceptance
+	option = {
+		name = nf_havana.11.a
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0.75
+				strength_ratio = { tag = HRA ratio > 1.5 }
+			}
+			modifier = {
+				factor = 0.4
+				strength_ratio = { tag = HRA ratio > 3 }
+			}
+			modifier = {
+				factor = 0.2
+				strength_ratio = { tag = HRA ratio > 5 }
+			}
+		}
+		HRA = {country_event = {id = nf_havana.12 hours = 2}}
+	}
+	#Refusal
+	option = {
+		name = nf_havana.11.b
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0.5
+				strength_ratio = { tag = HRA ratio < 1 }
+			}
+			modifier = {
+				factor = 0.2
+				strength_ratio = { tag = HRA ratio < 0.5 }
+			}
+			modifier = {
+				factor = 0
+				strength_ratio = { tag = HRA ratio < 0.2 }
+			}
+		}
+		HRA = {country_event = {id = nf_havana.13 hours = 2 }}
+	}
+}
+#RWT Puppet
+country_event = {
+	id = nf_havana.12
+	title = nf_havana.12.t
+	desc = nf_havana.12.d
+	picture = GFX_news_event_nuke
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_havana.12.a
+		puppet = RWT
+	}
+}
+#MBC War
+country_event = {
+	id = nf_havana.13
+	title = nf_havana.13.t
+	desc = nf_havana.13.d
+	picture = GFX_news_event_nuke
+
+	is_triggered_only = yes
+
+	option = {
+		name = nf_havana.13.a
+		create_wargoal = {
+			target = RWT
+			type = annex_everything
+		}
+	}
+}	

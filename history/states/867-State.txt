@@ -1,0 +1,36 @@
+state = {
+	id = 867
+	name="STATE_HAVANA"
+	manpower = 120000
+	state_category = metropolis
+
+	resources={
+		metal = 15
+		composites = 6
+		energy = 8
+		water = 6
+	}
+
+	history={
+		owner = HRA
+		add_core_of = HRA
+		victory_points = {
+			10654 20
+		}
+		buildings = {
+			infrastructure = 4
+			industrial_complex = 2
+			arms_factory = 2
+			dockyard = 1
+			10654 = {
+				naval_base = 1
+			}
+		}
+
+	}
+
+	provinces = {
+		729 10654 10655
+	}
+	
+}
