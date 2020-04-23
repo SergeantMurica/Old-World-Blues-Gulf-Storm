@@ -610,7 +610,10 @@ COF = {
   color = rgb { 204 51 0 }
   color_ui = rgb { 204 51 0 }
 }
-
+COH = {
+  color = rgb { 73 105 156 }
+  color_ui = rgb { 73 105 156 }
+}
 CTS = {
   color = rgb { 204 204 204 }
   color_ui = rgb { 204 204 204 }
@@ -622,10 +625,6 @@ GBR = {
 IAG = {
   color = rgb { 122 214 240 }
   color_ui = rgb { 122 214 240 }
-}
-RWT = {
-	color = rgb { 3 15 4 }
-	color_ui = rgb { 3 15 4 }
 }
 MBC = {
 	color = rgb { 163 102 255 }

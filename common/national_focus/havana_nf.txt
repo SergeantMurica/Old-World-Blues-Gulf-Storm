@@ -864,7 +864,7 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = hra_river_walker_outreach
+		id = hra_hub_delegation
 		icon = GFX_goal_tripartite_pact
 		cost = 5.8
 		ai_will_do = { base = 100 }
@@ -882,30 +882,30 @@ focus_tree = {
 			focus = hra_memorial_delegation
 		}
 		mutually_exclusive = { 
-			focus = hra_educate_tribals
+			focus = hra_seize_hub
 		}
 		relative_position_id = hra_memorial_delegation
 		completion_reward = {
 			if = {
 				limit = { has_global_flag = debug_logs }
-				log = "[GetDateText]: [Root.GetName] hra_river_walker_outreach entered"
+				log = "[GetDateText]: [Root.GetName] hra_hub_delegation entered"
 			}
-			RWT = {country_event = { id = nf_havana.11 }}
+			COH = {country_event = { id = nf_havana.11 }}
 			set_country_flag = restrict_ai_wargoal_focuses 
 			if = {
 				limit = { has_global_flag = debug_logs }
-				log = "[GetDateText]: [Root.GetName] hra_river_walker_outreach exited"
+				log = "[GetDateText]: [Root.GetName] hra_hub_delegation exited"
 			}
 		}
 	}
 	focus = {
-		id = hra_river_walker_representation
+		id = hra_hub_representation
 		icon = GFX_focus_generic_self_management
 		cost = 8.6
 		ai_will_do = { base = 100 }
 		available = {
 			OR = {
-				RWT = { is_puppet_of = HRA }
+				COH = { is_puppet_of = HRA }
 				AND = {
 					869 = { is_owned_and_controlled_by = ROOT }
 					870 = { is_owned_and_controlled_by = ROOT }
@@ -915,18 +915,18 @@ focus_tree = {
 		x = -1
 		y = 1
 		prerequisite = {
-			focus = hra_river_walker_outreach
+			focus = hra_hub_delegation
 		}
-		relative_position_id = hra_river_walker_outreach
+		relative_position_id = hra_hub_delegation
 		completion_reward = {
 			if = {
 				limit = { has_global_flag = debug_logs }
-				log = "[GetDateText]: [Root.GetName] hra_river_walker_outreach entered"
+				log = "[GetDateText]: [Root.GetName] hra_hub_delegation entered"
 			}
 			if = { 
-				limit = { RWT = { is_puppet_of = HRA }}
+				limit = { COH = { is_puppet_of = HRA }}
 				annex_country = {
-					target = RWT
+					target = COH
 					transfer_troops = no
 				}
 			}
@@ -935,7 +935,7 @@ focus_tree = {
 			clr_country_flag = restrict_ai_wargoal_focuses 
 			if = {
 				limit = { has_global_flag = debug_logs }
-				log = "[GetDateText]: [Root.GetName] hra_river_walker_outreach exited"
+				log = "[GetDateText]: [Root.GetName] hra_hub_delegation exited"
 			}
 		}
 	}
@@ -1098,7 +1098,7 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = hra_educate_tribals
+		id = hra_seize_hub
 		icon = GFX_goal_tfv_saf_anti_colonialist_crusade
 		cost = 4.3
 		ai_will_do = { base = 100 }
@@ -1116,27 +1116,27 @@ focus_tree = {
 			focus = hra_subjugate_the_bay
 		}
 		mutually_exclusive = { 
-			focus = hra_river_walker_outreach 
+			focus = hra_hub_delegation 
 		}
 		relative_position_id = hra_subjugate_the_bay
 		completion_reward = {
 			if = {
 				limit = { has_global_flag = debug_logs }
-				log = "[GetDateText]: [Root.GetName] hra_educate_tribals entered"
+				log = "[GetDateText]: [Root.GetName] hra_seize_hub entered"
 			}
 		create_wargoal = {
-			target = RWT
+			target = COH
 			type = annex_everything
 		}
 		set_country_flag = restrict_ai_wargoal_focuses
 			if = {
 				limit = { has_global_flag = debug_logs }
-				log = "[GetDateText]: [Root.GetName] hra_educate_tribals exited"
+				log = "[GetDateText]: [Root.GetName] hra_seize_hub exited"
 			}
 		}
 	}
 	focus = {
-		id = hra_the_walkers_tribute
+		id = hra_the_hubs_tribute
 		icon = GFX_focus_eng_move_to_secure_the_dominions
 		cost = 5.8
 		ai_will_do = { base = 100 }
@@ -1147,18 +1147,18 @@ focus_tree = {
 		x = 1
 		y = 1
 		prerequisite = {
-			focus = hra_educate_tribals
+			focus = hra_seize_hub
 		}
-		relative_position_id = hra_educate_tribals
+		relative_position_id = hra_seize_hub
 		completion_reward = {
 			if = {
 				limit = { has_global_flag = debug_logs }
-				log = "[GetDateText]: [Root.GetName] hra_the_walkers_tribute entered"
+				log = "[GetDateText]: [Root.GetName] hra_the_hubs_tribute entered"
 			}
 			if = { 
-				limit = { RWT = { is_puppet_of = HRA }}
+				limit = { COH = { is_puppet_of = HRA }}
 				annex_country = {
-					target = RWT
+					target = COH
 					transfer_troops = no
 				}
 			}
@@ -1167,7 +1167,7 @@ focus_tree = {
 			clr_country_flag = restrict_ai_wargoal_focuses
 			if = {
 				limit = { has_global_flag = debug_logs }
-				log = "[GetDateText]: [Root.GetName] hra_the_walkers_tribute exited"
+				log = "[GetDateText]: [Root.GetName] hra_the_hubs_tribute exited"
 			}
 		}
 	}
@@ -1179,10 +1179,10 @@ focus_tree = {
 		x = -2
 		y = 1
 		prerequisite = {
-			focus = hra_educate_tribals
-			focus = hra_river_walker_outreach
+			focus = hra_seize_hub
+			focus = hra_hub_delegation
 		}
-		relative_position_id = hra_educate_tribals
+		relative_position_id = hra_seize_hub
 		completion_reward = {
 			if = {
 				limit = { has_global_flag = debug_logs }
